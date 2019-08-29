@@ -1,4 +1,3 @@
-# hello-world-2
-Manually created hello world repository
+# Repo for ITM352 Fall 2019 Labs and ASsignments
 
-Test words. Hello. The sun is yellow. Hello. Hi. Good day. Guten tag. Konichiwa. etc.
+Hello
