@@ -29,7 +29,7 @@ img {
     width: 200px;
     height: 200px;
 }
-/* */
+/*DOM script for spinning images*/
 .rotate img
 {
   animation: rotation .3s infinite linear;
