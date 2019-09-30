@@ -1,0 +1,43 @@
+h1,h2{
+    font-family: 'Oswald', sans;
+}
+body {
+    font-family: 'Open Sans', sans;
+    color: yellow;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 950px;
+    background-color: black;
+}
+/*THIS IS NOT NEEDED FOR THIS WoD
+img { 
+    float: left; /*Float used for wrapping text & elements around object
+}
+*/
+ul li{
+    display: inline;
+    padding: 5px;
+}
+/*Could also use a div that covers everything and use column-count: 3; but that would not put each browser into its own "column" (I think Chrome isn't technically a column as it would still be below IE without the margin change)*/
+/*THIS IS NOT NEEDED FOR THIS WoD
+#left_column {
+    float: left;
+    width: 300px;
+    padding: 10px;
+}
+#right_column {
+    float: right;
+    width: 300px;
+    padding: 10px;
+}
+*/
+/*We are using margin's because there is no float: center*/
+/*
+#center_column {
+    margin-left: 300px;
+    margin-right: 300px;
+    padding: 10px;
+}
+*/

@@ -1,0 +1,16 @@
+<span id="output_span"></span>
+<script>
+    var age = 22;
+    var fav_num = 5;
+    var day_of_birth = 27;
+    var month_of_birth = 6;
+
+    document.getElementById("output_span").innerHTML = (age + fav_num / day_of_birth * month_of_birth);
+    
+    //For this expression, its mostly the same as above BUT we used PEMDAS; parenthesis will take PRECEDENCE in the order of operations.
+    document.getElementById("output_span").innerHTML = ((age + fav_num) / day_of_birth * month_of_birth);
+
+    var n = 22;
+    var m = 2;
+
+</script>
