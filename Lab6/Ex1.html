@@ -1,6 +1,7 @@
 <span id="output_span"></span>
 <script>
     var age = 22;
+    
     var fav_num = 5;
     var day_of_birth = 27;
     var month_of_birth = 6;
@@ -13,4 +14,26 @@
     var n = 22;
     var m = 2;
 
+    result = n*++m; //pre-increment $m; m+1 then *5 = 66
+    // result = n * m++; //post-increment $m n*m then +1 = 44?
+    
+
+    /*
+    first_name = "Joey";
+    last_name = "Gomes";
+
+    document.write(first_name + ' ' + last_name); //old way
+    document.write(`${first_name} ${last_name}`);//using script template
+    */
+
 </script>
+
+<table border="1"> 
+    <tr><th>Line</th><th>Name</th></tr>
+    <tr><td>1.</td><td>${first_name}</td></tr>
+    <tr><td>2.</td><td><br />
+                        ${first_name}</td></tr>
+    <tr><td>3.</td><td>\n${first_name}</td></tr>
+    <tr><td>4.</td><td>'\n${first_name}'</td></tr>
+    <tr><td>5.</td><td>"\n${first_name}"</td></tr>
+</table>
