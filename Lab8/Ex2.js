@@ -18,7 +18,7 @@ console.log(`You must be ${number} years old!`);
 //NOTE: && = 'and'; both are true
 //Since we increment first, we should set number to 0 otherwise we get off-by-one errors
 //This code describes: when the conditional number is < our age, we will increment number. IF our age is less than half AND number is 3/4 greater than age, then we'll output "no age zone" for all ages inbetween.  Then it will output your final age by continuing the original code.
-/*
+/*=
 var age = 22;
 var number = 0; //This initializes the counter
 while(number < age) {
