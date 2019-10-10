@@ -1,5 +1,5 @@
-<!--This was completed in 28:27:61->
-<!--This took 2 attempts-->
+<!--This was completed in 10:26:09->
+<!--This took 1 attempts-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,6 +47,15 @@
             var Subtotal = extended_price1+extended_price2+extended_price3+extended_price4+extended_price5;
         //Sales Tax
             var Tax = 0.0575*Subtotal;
+        //Shipping Cost
+            var Shipping
+            if(Subtotal < 50) {
+                Shipping = 2;
+            } else if(Subtotal >=50 && Subtotal < 100) {
+                Shipping = 5;
+            } else {
+                Shipping = Subtotal*0.05;
+            }
         //Grand Total
             var Grandtotal = Subtotal+Tax;
 </script>
@@ -138,6 +147,11 @@
                     <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Tax @ 5.75%</span></td>
                     <td width="54%">$<script>document.write(Tax.toFixed(2))</script></td>
                 </tr>
+            <!--Shipping Line-->
+                <tr>
+                    <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Shipping</span></td>
+                    <td width="54%">$<script>document.write(Shipping.toFixed(2))</script></td>
+                </tr>
             <!--Grand Total Line-->
                 <tr>
                     <td style="text-align: center;" colspan="3" width="67%"><strong>Total</strong></td>
@@ -145,5 +159,12 @@
                 </tr>
         </tbody>
     </table>
+<div id="policy">
+    <p><strong>
+        OUR SHIPPING POLICY IS:A subtotal $0 - $49.99 will be $2 shipping.
+        A subtotal $50 - $99.99 will be $5 shipping. 
+        Subtotals over $100 will be charged 5% of the subtotal amount.
+    </strong></p>
+</div>
 </body>
 </html>
