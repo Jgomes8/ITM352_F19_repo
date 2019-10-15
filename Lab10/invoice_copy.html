@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <script>
+        /*This file is for the creation of a sale receipt 
+        that contains at least 5 different products */
+        //Product Quantities
+        product_quantities = [2,1,1,3,12];
+        
+        //Product Data
+            // Product 1
+                //Product 1 Object
+                var product1object = {
+                    itemName:'Gillette Sensor 3 Razor',
+                    itemQuantity: product_quantities[0],
+                    itemPrice: 1.23
+                };
+                product1object.itemQuantity = 0;
+                product1object["SKU#"] = 1234;
+            // Product 2
+                var item2 = 'Barbasol Shaving Cream';
+                var quantity2 = product_quantities[1];
+                var price2 = 2.64;
+            // Product 3
+                var item3 = 'Nautica Cologne';
+                var quantity3 = product_quantities[2];
+                var price3 = 6.17;
+            // Product 4
+                var item4 = 'Rubbing Alcohol';
+                var quantity4 = product_quantities[3];
+                var price4 = 0.98;
+            // Product 5
+                var item5 = 'Colgate Classic Toothbrush';
+                var quantity5 = product_quantities[4];
+                var price5 = 1.89;
+        //Compute Extended Prices
+            //Product 1
+                var extended_price1 = product1object.itemQuantity*product1object.itemPrice;
+            //Product 2
+                var extended_price2 = quantity2*price2;
+            //Product 3
+                var extended_price3 = quantity3*price3;
+            //Product 4
+                var extended_price4 = quantity4*price4;
+            //Product 5
+                var extended_price5 = quantity5*price5;
+        //Subtotal
+            var Subtotal = extended_price1+extended_price2+extended_price3+extended_price4+extended_price5;
+        //Sales Tax
+            var Tax = 0.0575*Subtotal;
+        //Grand Total
+            var Grandtotal = Subtotal+Tax;
+</script>
+</head>
+<body>
+    <table border="2">
+        <tbody>
+            <!--Headings-->
+                  <tr>
+                    <th style="text-align: center;" width="43%">Item</th>
+                    <th style="text-align: center;" width="11%">Quantity</th>
+                    <th style="text-align: center;" width="13%">Price</th>
+                    <th style="text-align: center;" width="54%">Extended price</th>
+                  </tr>
+            <!--Product Row 1-->
+            <script>
+                document.write(`
+                <tr>
+                    <td width="43%">${product1object.itemName}</td>
+                    <td align="center" width="11%">${product1object.itemQuantity}</td>
+                    <td width="13%">$${product1object.itemPrice}</td>
+                    <td width="54%">$${extended_price1}</td>
+                </tr>
+                `)
+            </script>
+            <!--Product Row 2-->
+            <script>
+                document.write(`
+                <tr>
+                    <td width="43%">${item2}</td>
+                    <td align="center" width="11%">${quantity2}</td>
+                    <td width="13%">$${price2}</td>
+                    <td width="54%">$${extended_price2}</td>
+                </tr>
+                `)
+            </script>
+            <!--Product Row 3-->
+            <script>
+                document.write(`
+                <tr>
+                    <td width="43%">${item3}</td>
+                    <td align="center" width="11%">${quantity3}</td>
+                    <td width="13%">$${price3}</td>
+                    <td width="54%">$${extended_price3}</td>
+                </tr>
+                `)
+            </script>
+            <!--Product Row 4-->
+            <script>
+                document.write(`
+                <tr>
+                    <td width="43%">${item4}</td>
+                    <td align="center" width="11%">${quantity4}</td>
+                    <td width="13%">$${price4}</td>
+                    <td width="54%">$${extended_price4}</td>
+                </tr>
+                `)
+            </script>
+            <!--Product Row 5-->
+            <script>
+                document.write(`
+                <tr>
+                    <td width="43%">${item5}</td>
+                    <td align="center" width="11%">${quantity5}</td>
+                    <td width="13%">$${price5}</td>
+                    <td width="54%">$${extended_price5}</td>
+                </tr>
+                `)
+            </script>
+            <!--Empty Line-->
+            <script>
+                document.write(`
+                <tr>
+                    <td colspan="4" width="100%">&nbsp;</td>
+                </tr>
+                `)
+            </script>
+            <!--Subtotal Line-->
+            <script>
+                document.write(`
+                <tr>
+                    <td style="text-align: center;" colspan="3" width="67%">Sub-total</td>
+                    <td width="54%">$${Subtotal}</td>
+                </tr>
+                `)
+            </script>
+            <!--Tax Line-->
+                <tr>
+                    <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Tax @ 5.75%</span></td>
+                    <td width="54%">$<script>document.write(Tax.toFixed(2))</script></td>
+                </tr>
+            <!--Grand Total Line-->
+                <tr>
+                    <td style="text-align: center;" colspan="3" width="67%"><strong>Total</strong></td>
+                    <td width="54%"><strong>$<script>document.write(Grandtotal.toFixed(2))</script></strong></td>
+                </tr>
+        </tbody>
+    </table>
+</body>
+</html>
