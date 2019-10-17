@@ -11,10 +11,35 @@
         that contains at least 5 different products */
         //Product Quantities
         product_quantities = [2,1,1,3,12];
-            //Methods to add to array
-        product_quantities[5] = 27; //Add to new index (5) and = it to new value; if you make it a bigger index (i.e. 10) you would get gaps
-        product_quantities[product_quantities.length] = 1000;
-        product_quantities.push(777); //using PUSH will put it at the end of array
+
+        //EX 3 Stuff
+        /*
+        document.write(`
+        <table style="border: 1px solid black;text-align: center;">
+        <tr style="border: 1px solid black;"><th style="border: 1px solid black;">Product #</th><th>Quanity</th></tr>
+        `);
+            //We want to replace all this with a loop, since its the same outside of the specific quantity
+        document.write(`
+        <tr style="border: 1px solid black;"><td style="border: 1px solid black;">1</td><td>0</td></tr>
+        <tr style="border: 1px solid black;"><td style="border: 1px solid black;">2</td><td>4</td></tr>
+        <tr style="border: 1px solid black;"><td style="border: 1px solid black;">3</td><td>2</td></tr>
+        `)
+        document.write(`
+        </table>
+        `)
+        */
+        document.write(`
+        <table style="border: 1px solid black;text-align: center;">
+        <tr style="border: 1px solid black;"><th style="border: 1px solid black;">Product #</th><th>Quanity</th></tr>
+        `);
+        for(i=0; i<product_quantities.length; i++) {
+        document.write(`
+        <tr style="border: 1px solid black;"><td style="border: 1px solid black;">${i+1}</td><td>${product_quantities[i]}</td></tr>
+        `)
+        }
+        document.write(`
+        </table>
+        `)
 
         //Product Data
             // Product 1

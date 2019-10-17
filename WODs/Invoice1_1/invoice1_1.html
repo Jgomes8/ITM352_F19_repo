@@ -1,3 +1,5 @@
+<!--This was completed in 2:47:76->
+<!--This took 3 attempts-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,56 +11,31 @@
     <script>
         /*This file is for the creation of a sale receipt 
         that contains at least 5 different products */
-        //Product Quantities
-        product_quantities = [2,1,1,3,12];
-            //Methods to add to array
-        product_quantities[5] = 27; //Add to new index (5) and = it to new value; if you make it a bigger index (i.e. 10) you would get gaps
-        product_quantities[product_quantities.length] = 1000;
-        product_quantities.push(777); //using PUSH will put it at the end of array
-
         //Product Data
             // Product 1
-                //Product 1 Object
-                var product1object = {
-                    itemName:'Gillette Sensor 3 Razor',
-                    itemQuantity: product_quantities[0], //This will take the value from the array at point 0 (value: 2)
-                    itemPrice: 1.23
-                };
-                product1object.itemQuantity = 0; //This line is changing data in the product object after it is defined
-                product1object["SKU#"] = 1234;  //This line adds a new attribute to the product object after it is defined; NOTE: must use [] notation as the # sign make SKU not an identifier
+                var item1 = 'Gillette Sensor 3 Razor';
+                var quantity1 = 2;
+                var price1 = 1.23;
             // Product 2
                 var item2 = 'Barbasol Shaving Cream';
-                var quantity2 = product_quantities[1];
+                var quantity2 = 1;
                 var price2 = 2.64;
             // Product 3
                 var item3 = 'Nautica Cologne';
-                var quantity3 = product_quantities[2];
+                var quantity3 = 1;
                 var price3 = 6.17;
             // Product 4
                 var item4 = 'Rubbing Alcohol';
-                var quantity4 = product_quantities[3];
+                var quantity4 = 3;
                 var price4 = 0.98;
             // Product 5
                 var item5 = 'Colgate Classic Toothbrush';
-                var quantity5 = product_quantities[4];
+                var quantity5 = 12;
                 var price5 = 1.89;
         //Compute Extended Prices
-            //Product 1
-                var extended_price1 = product1object.itemQuantity*product1object.itemPrice;
-            //Product 2
-                var extended_price2 = quantity2*price2;
-            //Product 3
-                var extended_price3 = quantity3*price3;
-            //Product 4
-                var extended_price4 = quantity4*price4;
-            //Product 5
-                var extended_price5 = quantity5*price5;
-        //Subtotal
-            var Subtotal = extended_price1+extended_price2+extended_price3+extended_price4+extended_price5;
-        //Sales Tax
-            var Tax = 0.0575*Subtotal;
-        //Grand Total
-            var Grandtotal = Subtotal+Tax;
+            var Subtotal = 0;
+            
+        
 </script>
 </head>
 <body>
@@ -73,56 +50,66 @@
                   </tr>
             <!--Product Row 1-->
             <script>
+                var extended_price = price1*quantity1;
+                Subtotal += extended_price;
                 document.write(`
                 <tr>
-                    <td width="43%">${product1object.itemName}</td>
-                    <td align="center" width="11%">${product1object.itemQuantity}</td>
-                    <td width="13%">$${product1object.itemPrice}</td>
-                    <td width="54%">$${extended_price1}</td>
+                    <td width="43%">${item1}</td>
+                    <td align="center" width="11%">${quantity1}</td>
+                    <td width="13%">$${price1}</td>
+                    <td width="54%">$${extended_price}</td>
                 </tr>
                 `)
             </script>
             <!--Product Row 2-->
             <script>
+                var extended_price = price2*quantity2;
+                Subtotal += extended_price;
                 document.write(`
                 <tr>
                     <td width="43%">${item2}</td>
                     <td align="center" width="11%">${quantity2}</td>
                     <td width="13%">$${price2}</td>
-                    <td width="54%">$${extended_price2}</td>
+                    <td width="54%">$${extended_price}</td>
                 </tr>
                 `)
             </script>
             <!--Product Row 3-->
             <script>
+                var extended_price = price3*quantity3;
+                Subtotal += extended_price;
                 document.write(`
                 <tr>
                     <td width="43%">${item3}</td>
                     <td align="center" width="11%">${quantity3}</td>
                     <td width="13%">$${price3}</td>
-                    <td width="54%">$${extended_price3}</td>
+                    <td width="54%">$${extended_price}</td>
                 </tr>
                 `)
             </script>
             <!--Product Row 4-->
             <script>
+                var extended_price = price4*quantity4;
+                Subtotal += extended_price;
                 document.write(`
                 <tr>
                     <td width="43%">${item4}</td>
                     <td align="center" width="11%">${quantity4}</td>
                     <td width="13%">$${price4}</td>
-                    <td width="54%">$${extended_price4}</td>
+                    <td width="54%">$${extended_price}</td>
                 </tr>
                 `)
             </script>
             <!--Product Row 5-->
             <script>
+                var extended_price = price5*quantity5;
+                Subtotal += extended_price;
                 document.write(`
                 <tr>
                     <td width="43%">${item5}</td>
                     <td align="center" width="11%">${quantity5}</td>
                     <td width="13%">$${price5}</td>
-                    <td width="54%">$${extended_price5}</td>
+                    <td width="54%">$${extended_price}</td>
                 </tr>
                 `)
             </script>
@@ -136,6 +123,10 @@
             </script>
             <!--Subtotal Line-->
             <script>
+            //Sales Tax
+                var Tax = 0.0575*Subtotal;
+            //Grand Total
+                var Grandtotal = Subtotal+Tax;
                 document.write(`
                 <tr>
                     <td style="text-align: center;" colspan="3" width="67%">Sub-total</td>
