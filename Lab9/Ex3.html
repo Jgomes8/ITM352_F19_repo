@@ -10,10 +10,14 @@
 -->
 
 <!--New Code-->
+<script>
+    var nameHold;
+</script>
 <span id="firstname">Joseph</span>, <span id="lastname">Gomes</span>
 <br>
 <input type="button" value="Swap" 
     onclick="
+    nameHold = firstname.innerHTML;
     firstname.innerHTML = lastname.innerHTML;
-    lastname.innerHTML = firstname.innerHTML;
+    lastname.innerHTML = nameHold;
     ">
