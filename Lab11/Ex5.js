@@ -5,11 +5,17 @@ parts = attributes.split(theSeparator);
 
 //var attributes  =  "Joey;22;22.5;-21.5" ; 
 //parts = ["Joey",22,22.52,21.5];
-for(i=0; i < parts.length; i++) {
-    console.log(`${parts[i]} isNonNegInt ${isNonNegInt(parts[i],true)}`); //typeof changed to
-    //We HAVE to give the function here   ^^^^^^ something to call, since without something in () itll output null. You need to give it a parameter, which we use as parts[i]
-    //This console.log is as follows: outputs the parts array; then we output the string isNonNegInt; then it will output the function analyzing our parts array (is it true or false/etc)
+
+//for(i=0; i < parts.length; i++) {
+    parts.forEach(function(item,index){
+        console.log((typeof item == 'string' && item.length >0)?true:false)});
+
+   
+//}
+function printIt(item, index) {
+    console.log(`${item} isNonNegInt ${isNonNegInt(item,true)}`);
 }
+
 console.log(parts.join(theSeparator));
 
 
