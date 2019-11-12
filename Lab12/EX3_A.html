@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        function checkQuantityTextbox() {
+            errorsArray = isNonNegInt(quantity_textbox.value, true); //This means we want to return the array of errors
+            qty_textbox_message.innerHTML = errorsArray.join(',');
+        }
+        function isNonNegInt(q, returnErrors = true) {
+            errors = []; // assume no errors at first
+            if(Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
+            if(q < 0) errors.push('Negative value!'); // Check if it is non-negative
+            if(parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
+            return returnErrors ? errors : (errors.length == 0); 
+        }
+  
+        function displayPurchase() {
+            //Here, because we created a quantity_form, everything in it becomes an attribute of said form, so it lets us use .dot notation
+            if(isNonNegInt(quantity_form.quantity_textbox.value)) { //Here we are checking that, if its a NonNegInt, itll check whats in our textbox. If it fulfills the NonNeg check/is true, itll doc.write. If its false itll do nothing and stay on the page.
+                document.write(`Thank you for ordering ${quantity_form.quantity_textbox.value} things!`);
+            } else {
+                alert('Please enter a valid quantity!');
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--
+        a. Add a <form> element with name="quantity_form" action="" 
+            onsubmit="displayPurchase();" and change the input to a submit 
+            button that when pressed will displayPurchase(). 
+            Change the id to a name attribute for the textbox. 
+            Note that where you use quantity_textbox you will need 
+            to use quantity_form.quantity_textbox or quantity_form["quantity_textbox"]
+    -->
+    <form name="quantity_form" action="javascript:displayPurchase()" method="GET">
+        <label for="Quantity_textbox">Quality Desired</label> <!--lets you attach something to a form element-->
+        <input type="text" name="quantity_textbox" onkeyup="checkQuantityTextbox();"> <!--This is where the alert appears; remember to have function work you need the ()-->
+        <span id='qty_textbox_message'>Enter a quantity</span>
+        <br>
+        <input type="submit" value="Purchase">  <!--We needed to take out the onclick previously here--> <!--We also needed to change our 'button' to a submit-->
+    </form>
+</body>
+</html>

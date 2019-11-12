@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //When you press a key in our textbox, it should output an alert "hi!"
+        /*
+        function checkQuantityTextbox() {
+            alert('Hi!');
+        }
+        */
+       //Since we defined our textbox with the id quantity_textbox, we no longer use 
+        function checkQuantityTextbox() {
+            errorsArray = isNonNegInt(quantity_textbox.value, true); //This means we want to return the array of errors
+            qty_textbox_message.innerHTML = errorsArray.join(',');
+        }
+        function isNonNegInt(q, returnErrors = true) {
+            errors = []; // assume no errors at first
+            if(Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
+            if(q < 0) errors.push('Negative value!'); // Check if it is non-negative
+            if(parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
+            return returnErrors ? errors : (errors.length == 0); 
+        }
+    </script>
+</head>
+<body>
+    <!--Ex2A-->
+    <!--<label>Quality Desired</label> --> <!--lets you attach something to a form element-->
+    <!--<input type="text" onkeyup="qty_textbox_message.innerHTML = this.value;"> --> <!--The "THIS" aspect is a quick way of specifing the form we are currently in-->
+        <!--<span id='qty_textbox_message'>Enter a quantity</span> -->
+    
+    <!--Ex1B-->
+    <label for="Quantity_textbox">Quality Desired</label> <!--lets you attach something to a form element-->
+    <input type="text" id="quantity_textbox" onkeyup="checkQuantityTextbox();"> <!--This is where the alert appears; remember to have function work you need the ()-->
+        <span id='qty_textbox_message'>Enter a quantity</span>
+</body>
+</html>

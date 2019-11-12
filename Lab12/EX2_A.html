@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        function checkQuantityTextbox() {
+            errorsArray = isNonNegInt(quantity_textbox.value, true); //This means we want to return the array of errors
+            qty_textbox_message.innerHTML = errorsArray.join(',');
+        }
+        function isNonNegInt(q, returnErrors = true) {
+            errors = []; // assume no errors at first
+            if(Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
+            if(q < 0) errors.push('Negative value!'); // Check if it is non-negative
+            if(parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
+            return returnErrors ? errors : (errors.length == 0); 
+        }
+        //Function added in to create textbox saying 'Thank you for ordering!'
+        function displayPurchase() {
+            //alert('button pressed'); //Test code; lets us see if the function is working properly below
+            
+            /* We want to print out a whole new page without creating a new page.
+            We can do this using document.write() as this will replace html of a
+            given point. */
+            document.write(`Thank you for ordering ${quantity_textbox.value} things!`);
+            /*
+            Here we are able to output 
+            */
+            
+        }
+    </script>
+</head>
+<body>
+    <label for="Quantity_textbox">Quality Desired</label> <!--lets you attach something to a form element-->
+    <input type="text" id="quantity_textbox" onkeyup="checkQuantityTextbox();"> <!--This is where the alert appears; remember to have function work you need the ()-->
+    <span id='qty_textbox_message'>Enter a quantity</span>
+
+    <br>
+
+    <!--
+        a. In order_page.html add a button element with value Purchase that 
+        when pressed displays a new page Thank for you for ordering xxxx 
+        things! where xxxx is whatever was in the textbox. Define a function 
+        displayPurchase() to make the new page.
+    -->
+    <input type="button" value="Purchase" onclick="displayPurchase();">  <!--Based on whatever text is input, onclick we want to output the function displayPurchase() which will give us a purchase message-->
+</body>
+</html>
