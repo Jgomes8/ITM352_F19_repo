@@ -1,0 +1,17 @@
+body {
+    margin: auto;
+    width: 800px;
+    text-align: center;
+    background-color: burlywood;
+}
+main {
+    display: inline-table;
+    border: 5px solid black;
+}
+img {
+    width: 350px;
+    height: 250px;
+}
+div {
+    border: 10px double black;
+}
