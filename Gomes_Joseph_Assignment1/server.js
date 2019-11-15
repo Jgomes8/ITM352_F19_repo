@@ -1,7 +1,8 @@
-var express = require('express'); //call express
+var express = require('express'); //run express
 var myParser = require("body-parser");
-var data = require('./public/product.js'); //???
+var data = require('./public/product.js'); 
 var app = express(); //initialize express
+
 /* NOT NEEDED?
 app.all('*', function (request, response, next) {
     console.log(request.method + ' to ' + request.path); //This should be console.log because we don't want to respond.
@@ -11,53 +12,54 @@ app.all('*', function (request, response, next) {
 //We'll need to install parser addon for this code to work
 app.use(myParser.urlencoded({ extended: true }));
 
-//PROCESS FORM
-//This will allow us to actually get the inputted data. "When I input the form, get the process form submission from the server"
+//-----PROCESS FORM------------------------------------
+/*Code used created with aid of Dr. Port
+This will allow us to actually get the inputted data. "When I input the form, get the process form submission from the server"
 
-
-//NON-NEG CHECK
-
-
-//Display Purchase (Invoice Output)
-
-
-
-/*NEW!!!
-Since we are using POST method on index.html line 19, we would use app.post to grab our
+(LINE 25) Since we are using POST method on index.html line 19, we would use app.post to grab our
 data and put it into... 'process_form'.
-*/
-app.post("/process_form", function (request, response) {
-   let POST = request.body; 
-/*NEW!
-We created this for loop to grab products from our quantityPurchased forms and 
+
+(LINE 29) We created this for loop to grab products from our quantityPurchased forms and 
 then check to see if we have valid data before giving invoice
 */
-    var hasValidQuantities = true; //We use this to see if whatever is outputted in our  
-    var hasPurchases = false;
+app.post("/process_form", function (request, response) {
+    let POST = request.body; 
+    var hasValidQuantities = true; //Create variable; consider default quantities as 'true' (nonNeg)
+    var hasPurchases = false; //Create variable; consider no items purchased yet
     for (i = 0; i < products.length; i++) {
-        q = POST[`quantityPurchased${i}`];
-        if(isNonNegInt(q == false)) { //Does nonneg function
-            hasValidQuantities = false;
+        var q = POST[`quantityPurchased${i}`]; //Variable q holds POSTed data of quantities inputted
+        if(isNonNegInt(q == false)) { //Runs isNonNegInt function for q
+            hasValidQuantities = false; //If q is false, set variable to false (quantity is not an int)
         } 
-        if (q > 0) {
-            hasPurchases = true;
+        if (q > 0) { //If q variable greater than 0
+            hasPurchases = true; //And item has been purchased, set variable to true
         }
+        console.log(hasValidQuantities, hasPurchases); //Check data in console
    }
-    //If my form data has textbox/input called quantity_textbox and it has an actual value (not undefined) then I have data and am ready to do something
+/*
+If var hasValidQuantities and var hasPurchases are true, output the displayPurchases function
+Otherwise, if those variables are false, output an invalid message
+*/
     if (hasValidQuantities && hasPurchases) {
-        displayPurchase(POST, response); //If I have data, display my purchase
+        displayPurchase(POST, response); //If I have data, use displayPurcahse function
     } else {
-        response.send("invalid data please resubmit");
+        response.send(`
+            <h1>Warning: Invalid Data Submitted</h1>
+            <p>You have submitted an incorrect amount. Please hit the back button and try again.</p>
+        `);
     } 
-
+    
 });
 
-//We replaced the response.send above with console.log as otherwise the below app.use would not recieve requests. Now the app.use will send a response to a request
-app.use(express.static('./public')); //We are telling express to use public folder
-app.listen(8080, () => console.log(`listening on port 8080`));
+app.use(express.static('./public')); //We are telling express to use the public folder
+app.listen(8080, () => console.log(`listening on port 8080`)); //Our server will listen on port 8080
 
-//Now that we have our data, we want to check it to make sure its good data.
-//Check to make sure our form data is a non-neg integer
+//-----NON-NEG CHECK------------------------------------
+/* function used taken from Lab 13 files.
+
+Check to make sure our form data is a non-neg integer. This will run through the
+if statement through the process form function above.
+*/
 function isNonNegInt(q, returnErrors = false) {
     errors = []; // assume no errors at first
     if(Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
@@ -65,11 +67,102 @@ function isNonNegInt(q, returnErrors = false) {
     if(parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
     return returnErrors ? errors : (errors.length == 0); 
 }
-//Since were pasting this outside of app.post, we have to add the argument (response) to pass it in
-/*
-THIS IS WHERE WE OUTPUT OUR INVOICE IF TRUE
+
+//-----Display Purchase (Invoice Output)------------------------------------
+/* 
+We will be using this function to display the invoice.
 */
 function displayPurchase(POST, response) {
-    //Here, because we created a quantity_form, everything in it becomes an attribute of said form, so it lets us use .dot notation
-    response.send("Invoice!")
+    
+/*
+Create a variable with an empty string
+Add to the empty string table headers
+For loop goes into effect, adds new rows to table using data from products array
+Add closing table tag to string
+Respond using string
+*/
+
+    subtotal=0;
+    
+    outStr = ''; 
+    outStr +=     
+        `
+        <table border="2" align=center>    
+            <tbody>    
+                <tr>
+                    <th style="text-align: center;" width="43%">Item</th>
+                    <th style="text-align: center;" width="11%">Quantity</th>
+                    <th style="text-align: center;" width="13%">Price</th>
+                    <th style="text-align: center;" width="54%">Extended price</th>
+                </tr>
+        `;
+    for (i=0; i<products.length; i++){
+        quants = 0;
+        if(typeof POST[`quantityPurchased${i}`] != 'undefined') {
+            var quants = POST[`quantityPurchased${i}`];
+        }
+        if (quants > 0) {
+            extended_price = quants * products[i].price;
+            subtotal += extended_price;
+            outStr += 
+            (`
+                <tr>
+                    <th style="text-align: center;" width="43%">${products[i].name}</th>
+                    <th style="text-align: center;" width="11%">${quants}</th>
+                    <th style="text-align: center;" width="13">$${products[i].price}</th>
+                    <th style="text-align: center;" width="%">$${extended_price}</th>
+                </tr>
+            `);
+        }
+    }
+    //Sales Tax
+            var Tax = 0.0575*subtotal;
+        //Shipping Cost
+            var Shipping
+            if(subtotal < 50) {
+                Shipping = 2;
+            } else if(subtotal >=50 && subtotal < 100) {
+                Shipping = 5;
+            } else {
+                Shipping = subtotal*0.05;
+            }
+        //Grand Total
+            var Grandtotal = subtotal+Tax;
+
+    //Add empty invoice line
+    outStr += 
+    (`
+    <tr>
+        <td colspan="4" width="100%">&nbsp;</td>
+    </tr>
+    `)
+    //Add Subtotal Line to Invoice string
+    outStr +=
+    (`
+    <tr>
+        <td style="text-align: center;" colspan="3" width="67%">Sub-total</td>
+        <td style="text-align: center;" width="54%">$${subtotal.toFixed(2)}</td>
+    </tr>
+    `)
+    //Add Tax Line to Invoice string
+    outStr +=
+    (`
+    <tr>
+        <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Tax @ 5.75%</span></td>
+        <td style="text-align: center;" width="54%">$${Tax.toFixed(2)}</td>
+    </tr>
+    `)
+    //Add Grand Total Line to Invoice string
+    outStr +=
+    (`
+    <tr>
+        <td style="text-align: center;" colspan="3" width="67%"><strong>Total</strong></td>
+        <td style="text-align: center;" width="54%"><strong>$${Grandtotal.toFixed(2)}</strong></td>
+    </tr>
+    `)
+        
+    outStr += '</table>';
+    response.send(outStr);
+    
+    
 }

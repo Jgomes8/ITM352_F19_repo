@@ -35,8 +35,8 @@ app.post("/process_invoice", function (request, response, next) {
       <tr>
         <td width="43%">${products[i].brand}</td>
         <td align="center" width="11%">${a_qty}</td>
-        <td width="13%">\$${products[i].price}</td>
-        <td width="54%">\$${extended_price}</td>
+        <td width="13%">$${products[i].price}</td>
+        <td width="54%">$${extended_price}</td>
       </tr>
       `);
             }

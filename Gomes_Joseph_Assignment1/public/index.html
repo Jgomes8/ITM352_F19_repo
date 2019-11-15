@@ -22,15 +22,11 @@
             //Suggestion: also add description of product between image and name
             for (i = 0; i < products.length; i++) {
                 document.write(`
-                <div>
+                <div id="shopGrid">
                     <img src="${products[i].image}">
-                    <br>
                     <h2>${products[i].name}</h2>
-                    <br>
                     <p>$${products[i].price}</p>
-                    <br>
                     <input type="text" value="0" name="quantityPurchased${i}">
-                    <br>
                 </div>
                 `)
             }    

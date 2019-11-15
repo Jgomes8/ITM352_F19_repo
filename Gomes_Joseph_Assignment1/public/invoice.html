@@ -21,60 +21,34 @@
                     <th style="text-align: center;" width="13%">Price</th>
                     <th style="text-align: center;" width="54%">Extended price</th>
                 </tr>
-            <!--Product Row 1-->
+            <!--Product Row Loop Creation>-->
             <script>
             document.write(`
-            <tr>
-                <td width="43%">${products[i].name}</td>
-                <td align="center" width="11%">${5}</td>
-                <td width="13%">$${products[i].price}</td>
-                <td width="54%">$${5}</td>
-            </tr>
+            =
             `)
             </script>
-            <!--Product Row 2-->
+            <!--Additional Invoice Information-->
+                        <script>
+            //Sales Tax
+                var Tax = 0.0575*Subtotal;
+            //Grand Total
+                var Grandtotal = Subtotal+Tax;
+                document.write(`
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <td style="text-align: center;" colspan="3" width="67%">Sub-total</td>
+                    <td width="54%">$${Subtotal}</td>
                 </tr>
-            <!--Product Row 3-->
+                `)
+            </script>
+            <!--Tax Line-->
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Tax @ 5.75%</span></td>
+                    <td width="54%">$<script>document.write(Tax.toFixed(2))</script></td>
                 </tr>
-            <!--Product Row 4-->
+            <!--Grand Total Line-->
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            <!--Product Row 5-->
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            <!--Line Break-->
-                <br>
-            <!--Tax-->
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            <!--Grand Total-->
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <td style="text-align: center;" colspan="3" width="67%"><strong>Total</strong></td>
+                    <td width="54%"><strong>$<script>document.write(Grandtotal.toFixed(2))</script></strong></td>
                 </tr>
         </tbody>
     </table>

@@ -1,17 +1,21 @@
 body {
     margin: auto;
-    width: 800px;
+    width: 1280px;
     text-align: center;
-    background-color: burlywood;
+    background-color: maroon;
 }
 main {
-    display: inline-table;
-    border: 5px solid black;
+    
 }
-img {
-    width: 350px;
-    height: 250px;
-}
-div {
+#shopGrid {
+    background-color: mintcream;
     border: 10px double black;
+    padding: 10px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+}
+#shopGrid > img {
+    width: 200px;
+    height: 200px;
 }
