@@ -1,21 +1,51 @@
+/*CSS For index page*/
 body {
     margin: auto;
-    width: 1280px;
+    width: auto;
     text-align: center;
-    background-color: maroon;
+    background-image: url(./images/background.png);
+    background-size: 100% 100%;
 }
 main {
-    
+    background-color: maroon;
+    border: 6px solid black;
+    padding: 10px;
+    margin-left: 125px;
+    margin-right: 125px;
 }
 #shopGrid {
+    word-wrap: normal;
     background-color: mintcream;
-    border: 10px double black;
-    padding: 10px;
-    display: flex;
-    flex-flow: wrap;
-    justify-content: space-around;
+    display: inline-block;
+    width: 360px;
+    height: 360px;
+    padding: 5px;
+    border: 6px double black;
 }
 #shopGrid > img  {
+    width: 230px;
+    height: 190px;
+}
+#purchaseArea {
+    background-color: mintcream;
+    text-align: center;
+    border: 6px solid black;
+    padding: 10px;
+    width: 400px;
+    margin: auto;
+}
+input[type=submit] {
     width: 200px;
-    height: 200px;
+    height: 50px;
+}
+input[type=text] {
+    width: 145px;
+}
+footer {
+    background-color: black;
+    color: mintcream;
+}
+/*Table CSS for invoice*/
+table {
+    background-color: mintcream;
 }

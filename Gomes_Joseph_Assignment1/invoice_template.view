@@ -1,5 +1,26 @@
-<head><link href="shop_css.css" rel="stylesheet"></head>
-        
+<head><link href="shop_css.css" rel="stylesheet">
+<style>
+header {
+    width: 585px;
+    margin: auto;
+    background-color: mintcream;
+    border: 6px solid black;
+}
+body {
+    width: 600px;
+    height: auto;
+    margin: auto;
+}
+</style>
+</head>
+<header>
+    <h1>Thank you for your purchase!</h1>
+    <p>
+    A confirmation of your purchase has been sent to your email.
+    If you want to continue shopping, please select the back button!
+    </p>
+</header>
+<body>        
 <table border="2" align=center>    
     <tbody>    
         <tr>
@@ -32,3 +53,4 @@ ${invoiceRows}
         </tr>
     </tbody>
 </table>
+</body>

@@ -4,12 +4,6 @@ var data = require('./public/product.js');
 var fs = require('fs'); //require fs to run render template string file
 var app = express(); //initialize express
 
-/* NOT NEEDED?
-app.all('*', function (request, response, next) {
-    console.log(request.method + ' to ' + request.path); //This should be console.log because we don't want to respond.
-    next(); 
-});
-*/
 //We'll need to install parser addon for this code to work
 app.use(myParser.urlencoded({ extended: true })); 
 
@@ -43,10 +37,24 @@ Otherwise, if those variables are false, output an invalid message
 */
     if (hasValidQuantities && hasPurchases) { //If both hasValidQuantities and hasPurchases are true
         displayPurchase(POST, response); //If I have data(above), use displayPurcahse function
-    } else { //Else send user to Error page
-        response.send(`
-            <h1>Warning: Invalid Data Submitted</h1>
-            <p>You have submitted an incorrect amount. Please hit the back button and try again.</p>
+    } else { //Else send user to Error page; uses some internal css
+        response.send(` 
+            <head>
+                <link href="shop_css.css" rel="stylesheet">
+                <style>
+                    header {
+                        width: 585px;
+                        margin: auto;
+                        background-color: mintcream;
+                        border: 6px solid black;
+                    }
+                </style>
+            </head>
+            <header>
+                <img src="images/warning.png" height="200" width="200">
+                <h1>Warning: Invalid Data Submitted</h1>
+                <p>You have submitted an incorrect amount. Please hit the back button and try again.</p>
+            </header>
         `);
     } 
     
@@ -74,11 +82,16 @@ function isNonNegInt(q, returnErrors = false) {
 We will be using this function to display the invoice. 
 This will be created using a template file which is called as our 
 response to the validation process in app.post above
+
+Original Code in copy: continually add to empty string outStr then 
+have the response call the completed string. Template usage modified 
+through Dr. Port's assistance.
 */
 function displayPurchase(POST, response) {
     subtotal = 0; //Define subtotal variable
     
-    var invoiceRows = ""; //Define empty invoiceRows variable; invoiceRows will be filled to display items based on gotten quantities
+    //Modified from Assignment1_MVC_Example
+    invoiceRows = ""; //Define empty invoiceRows variable; invoiceRows will be filled to display items based on gotten quantities
     for (i=0; i<products.length; i++){
         quants = 0; //define quants variable as 0
         if(typeof POST[`quantityPurchased${i}`] != 'undefined') { 

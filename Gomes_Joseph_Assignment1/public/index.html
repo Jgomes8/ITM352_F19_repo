@@ -16,26 +16,29 @@
         <img src="images/nintendologo.png" height="200" width="600">
     </header>
     <main>
-        <form name="purchaseForm" action="./process_form" method="POST"> 
+        <form name="purchaseForm" action="./process_form" method="POST"> <!--Create form around shop body, use POST method to send data to process_form-->
         <script>
             //For loop used to output images from product.js file
-            //Suggestion: also add description of product between image and name
             for (i = 0; i < products.length; i++) {
                 document.write(`
                 <div id="shopGrid">
-                    <img src="${products[i].image}">
                     <h2>${products[i].name}</h2>
-                    <p>$${products[i].price}</p>
-                    <input type="text" value="0" name="quantityPurchased${i}">
+                    <img src="${products[i].image}">
+                    <p><strong>Price: </strong>$${products[i].price}</p>
+                    <input type="text" placeholder="$0 - Enter Amount Here!" name="quantityPurchased${i}">
                 </div>
                 `)
             }    
         </script>
+        <br>
     </main>
-    <footer>
-        <p>Generic Buy today message!</p>
-            <input type="submit" value="Purchase" name="purchaseButton" onkeyup="">
+    <div id="purchaseArea">
+        <h2>Buy Today!</h2>
+        <input type="submit" value="Purchase" name="purchaseButton" onkeyup=""> 
         </form>
+    </div>
+    <footer>
+        <p>(C) A BUS 311 Sponsored Storefront</p>
     </footer>
 </body>
 </html>
