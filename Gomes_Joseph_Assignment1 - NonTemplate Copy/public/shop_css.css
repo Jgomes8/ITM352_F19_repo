@@ -1,0 +1,21 @@
+body {
+    margin: auto;
+    width: 1280px;
+    text-align: center;
+    background-color: maroon;
+}
+main {
+    
+}
+#shopGrid {
+    background-color: mintcream;
+    border: 10px double black;
+    padding: 10px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+}
+#shopGrid > img  {
+    width: 200px;
+    height: 200px;
+}

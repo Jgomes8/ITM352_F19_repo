@@ -1,6 +1,7 @@
 var express = require('express'); //run express
 var myParser = require("body-parser");
 var data = require('./public/product.js'); 
+var fs = require('fs'); //require fs to run render template string file
 var app = express(); //initialize express
 
 /* NOT NEEDED?
@@ -10,7 +11,7 @@ app.all('*', function (request, response, next) {
 });
 */
 //We'll need to install parser addon for this code to work
-app.use(myParser.urlencoded({ extended: true }));
+app.use(myParser.urlencoded({ extended: true })); 
 
 //-----PROCESS FORM------------------------------------
 /*Code used created with aid of Dr. Port
@@ -40,9 +41,9 @@ app.post("/process_form", function (request, response) {
 If var hasValidQuantities and var hasPurchases are true, output the displayPurchases function
 Otherwise, if those variables are false, output an invalid message
 */
-    if (hasValidQuantities && hasPurchases) {
-        displayPurchase(POST, response); //If I have data, use displayPurcahse function
-    } else {
+    if (hasValidQuantities && hasPurchases) { //If both hasValidQuantities and hasPurchases are true
+        displayPurchase(POST, response); //If I have data(above), use displayPurcahse function
+    } else { //Else send user to Error page
         response.send(`
             <h1>Warning: Invalid Data Submitted</h1>
             <p>You have submitted an incorrect amount. Please hit the back button and try again.</p>
@@ -70,41 +71,23 @@ function isNonNegInt(q, returnErrors = false) {
 
 //-----Display Purchase (Invoice Output)------------------------------------
 /* 
-We will be using this function to display the invoice.
+We will be using this function to display the invoice. 
+This will be created using a template file which is called as our 
+response to the validation process in app.post above
 */
 function displayPurchase(POST, response) {
+    subtotal = 0; //Define subtotal variable
     
-/*
-Create a variable with an empty string
-Add to the empty string table headers
-For loop goes into effect, adds new rows to table using data from products array
-Add closing table tag to string
-Respond using string
-*/
-
-    subtotal=0;
-    
-    outStr = ''; 
-    outStr +=     
-        `
-        <table border="2" align=center>    
-            <tbody>    
-                <tr>
-                    <th style="text-align: center;" width="43%">Item</th>
-                    <th style="text-align: center;" width="11%">Quantity</th>
-                    <th style="text-align: center;" width="13%">Price</th>
-                    <th style="text-align: center;" width="54%">Extended price</th>
-                </tr>
-        `;
+    var invoiceRows = ""; //Define empty invoiceRows variable; invoiceRows will be filled to display items based on gotten quantities
     for (i=0; i<products.length; i++){
-        quants = 0;
-        if(typeof POST[`quantityPurchased${i}`] != 'undefined') {
-            var quants = POST[`quantityPurchased${i}`];
+        quants = 0; //define quants variable as 0
+        if(typeof POST[`quantityPurchased${i}`] != 'undefined') { 
+            var quants = POST[`quantityPurchased${i}`]; //Defines quants variable to equal values grabbed by post from quantityPurchased boxes
         }
         if (quants > 0) {
-            extended_price = quants * products[i].price;
-            subtotal += extended_price;
-            outStr += 
+            extended_price = quants * products[i].price; //Define extended_price variable; solve by multiplying quants by item array price
+            subtotal += extended_price; //Increase subtotal by adding the extended_prices
+            invoiceRows += //Add to invoiceRows a line per valid purchase
             (`
                 <tr>
                     <th style="text-align: center;" width="43%">${products[i].name}</th>
@@ -115,54 +98,23 @@ Respond using string
             `);
         }
     }
+//Define and solve for additional invoice functions
     //Sales Tax
-            var Tax = 0.0575*subtotal;
-        //Shipping Cost
-            var Shipping
+        var tax = 0.0575*subtotal;
+    //Shipping Cost
+        var shipping
             if(subtotal < 50) {
-                Shipping = 2;
+                shipping = 2;
             } else if(subtotal >=50 && subtotal < 100) {
-                Shipping = 5;
+                shipping = 5;
             } else {
-                Shipping = subtotal*0.05;
+                shipping = subtotal*0.05;
             }
-        //Grand Total
-            var Grandtotal = subtotal+Tax;
+    //Grand Total
+        var grandTotal = subtotal+tax+shipping;
 
-    //Add empty invoice line
-    outStr += 
-    (`
-    <tr>
-        <td colspan="4" width="100%">&nbsp;</td>
-    </tr>
-    `)
-    //Add Subtotal Line to Invoice string
-    outStr +=
-    (`
-    <tr>
-        <td style="text-align: center;" colspan="3" width="67%">Sub-total</td>
-        <td style="text-align: center;" width="54%">$${subtotal.toFixed(2)}</td>
-    </tr>
-    `)
-    //Add Tax Line to Invoice string
-    outStr +=
-    (`
-    <tr>
-        <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Tax @ 5.75%</span></td>
-        <td style="text-align: center;" width="54%">$${Tax.toFixed(2)}</td>
-    </tr>
-    `)
-    //Add Grand Total Line to Invoice string
-    outStr +=
-    (`
-    <tr>
-        <td style="text-align: center;" colspan="3" width="67%"><strong>Total</strong></td>
-        <td style="text-align: center;" width="54%"><strong>$${Grandtotal.toFixed(2)}</strong></td>
-    </tr>
-    `)
-        
-    outStr += '</table>';
-    response.send(outStr);
-    
-    
+//Set contents variable; used to read/access the invoice_template.view file 
+        var contents = fs.readFileSync('./invoice_template.view', 'utf8');
+        response.send(eval('`' + contents + '`')); /* Play response for valid purchases using 
+        template view file; backticks used to allow for template strings '${}' found in the template file */
 }
