@@ -15,7 +15,7 @@ main {
     flex-flow: wrap;
     justify-content: space-around;
 }
-#shopGrid > img {
+#shopGrid > img  {
     width: 200px;
     height: 200px;
 }
