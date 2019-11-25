@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nostalgia Console Store</title>
+    <link href="shop_css.css" rel="stylesheet"> <!-- Link style sheet-->
+    <script src="./product.js" type="text/javascript"></script> <!-- Link the product.js file to pull data (uses GET request)-->
+    <script>
+        
+    </script>
+</head>
+<body>
+    <header>
+        <img src="images/nintendologo.png" height="200" width="600">
+    </header>
+    <main>
+        <form name="purchaseForm" action="./process_form" method="POST"> <!--Create form around shop body, use POST method to send data to process_form-->
+        <script>
+            //For loop used to output images from product.js file
+            for (i = 0; i < products.length; i++) {
+                document.write(`
+                <div id="shopGrid">
+                    <h2>${products[i].name}</h2>
+                    <img src="${products[i].image}">
+                    <p><strong>Price: </strong>$${products[i].price}</p>
+                    <input type="text" placeholder="Enter Amount Here!" name="quantityPurchased${i}">
+                </div>
+                `)
+            }    
+        </script>
+        <br>
+    </main>
+    <div id="purchaseArea">
+        <h2>Buy Today!</h2>
+        <input type="submit" value="Purchase" name="purchaseButton" onkeyup=""> 
+        </form>
+    </div>
+    <footer>
+        <p>(C) A BUS 311 Sponsored Storefront</p>
+    </footer>
+</body>
+</html>

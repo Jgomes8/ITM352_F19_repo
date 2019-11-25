@@ -1,0 +1,8 @@
+{
+    "test_user":{
+        "firstName":"John",
+        "lastName":"Doe",
+        "password":"testpass",
+        "email":"jgomes8@hawaii.edu"
+    }
+}

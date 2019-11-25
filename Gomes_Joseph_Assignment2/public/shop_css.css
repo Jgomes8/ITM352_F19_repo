@@ -1,0 +1,62 @@
+/*CSS for index.html page*/
+#index_button {
+    background-color: mintcream;
+    padding: 5px;
+    width: auto;
+    height: auto;
+    margin: auto;
+    border: 6px double black;
+}
+
+/*CSS For main shop page*/
+body {
+    margin: auto;
+    width: auto;
+    text-align: center;
+    background-image: url(./images/background.png);
+    background-size: 100% 100%;
+}
+main {
+    background-color: maroon;
+    border: 6px solid black;
+    padding: 10px;
+    margin-left: 125px;
+    margin-right: 125px;
+}
+#shopGrid {
+    word-wrap: normal;
+    background-color: mintcream;
+    display: inline-block;
+    width: 360px;
+    height: 360px;
+    padding: 5px;
+    border: 6px double black;
+}
+#shopGrid > img  {
+    width: 230px;
+    height: 190px;
+}
+#purchaseArea {
+    background-color: mintcream;
+    text-align: center;
+    border: 6px solid black;
+    padding: 10px;
+    width: 400px;
+    margin: auto;
+}
+input[type=submit] {
+    width: 200px;
+    height: 50px;
+}
+input[type=text] {
+    width: 145px;
+}
+footer {
+    background-color: black;
+    color: mintcream;
+}
+/*Table CSS for invoice*/
+table {
+    background-color: mintcream;
+}
+

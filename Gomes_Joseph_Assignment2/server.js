@@ -1,8 +1,9 @@
 var express = require('express'); //run express
 var myParser = require("body-parser");
 var data = require('./public/product.js'); 
-var fs = require('fs'); //require fs to run render template string file --> fs = filesystem module
+var fs = require('fs'); //Load in filesystem module, apply to fs variable; renders template string for .view files & login data .json
 var app = express(); //initialize express
+var filename = 'user_registration_info.json'
 
 //We'll need to install parser addon for this code to work
 app.use(myParser.urlencoded({ extended: true })); 
@@ -11,7 +12,7 @@ app.use(myParser.urlencoded({ extended: true }));
 /*Code used created with aid of Dr. Port
 This will allow us to actually get the inputted data. "When I input the form, get the process form submission from the server"
 
-(LINE 25) Since we are using POST method on index.html line 19, we would use app.post to grab our
+(LINE 25) Since we are using POST method on shop_page.html line 19, we would use app.post to grab our
 data and put it into... 'process_form'.
 
 (LINE 29) We created this for loop to grab products from our quantityPurchased forms and 
@@ -36,7 +37,9 @@ If var hasValidQuantities and var hasPurchases are true, output the displayPurch
 Otherwise, if those variables are false, output an invalid message
 */
     if (hasValidQuantities && hasPurchases) { //If both hasValidQuantities and hasPurchases are true
-        displayPurchase(POST, response); //If I have data(above), use displayPurcahse function
+        
+        //Temporary redirect (307) gotten from https://stackoverflow.com/questions/38810114/node-js-with-express-how-to-redirect-a-post-request
+        response.redirect(307, '/login'); //If I have data(above), use displayPurcahse function
     } else { //Else send user to Error page; uses some internal css
         response.send(` 
             <head>
@@ -60,7 +63,7 @@ Otherwise, if those variables are false, output an invalid message
     
 });
 
-app.use(express.static('./public')); //We are telling express to use the public folder
+app.use(express.static('./public'));                            //We are telling express to use the public folder
 app.listen(8080, () => console.log(`listening on port 8080`)); //Our server will listen on port 8080
 
 //-----NON-NEG CHECK------------------------------------
@@ -71,11 +74,54 @@ if statement through the process form function above.
 */
 function isNonNegInt(q, returnErrors = false) {
     errors = []; // assume no errors at first
-    if(Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
-    if(q < 0) errors.push('Negative value!'); // Check if it is non-negative
+    if(Number(q) != q) errors.push('Not a number!');    // Check if string is a number value
+    if(q < 0) errors.push('Negative value!');           // Check if it is non-negative
     if(parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
     return returnErrors ? errors : (errors.length == 0); 
 }
+
+//-----Check login info existence-----------------------------
+/*
+Taken from Lab14. Used to check login file exists.
+*/
+if (fs.existsSync(filename)) { //This will go and check if a filename exists and then returns true or false or runs some code.  We will run this in an if statement.
+    stats = fs.statSync(filename); //We will use the statSync, apply it to variable stat
+    loginData = fs.readFileSync(filename, 'utf-8') //reads filename variable (user_registration_info.json) and applies to loginData variable
+    //console.log(typeof loginData);                //TEST see if string data is recieved.
+    users_reg_data = JSON.parse(loginData);         //This will move through our data string from our json file (user_registration_info.json) and turn it into an object
+    //console.log(typeof users_reg_data);           //TEST see if data is now an object
+    console.log(users_reg_data);
+} else {
+    console.log(filename + ' does not exist!'); //If our file doesnt exist, run other code
+}
+
+//-----Display Login Page (After Purchase Selection)------------------------
+/*
+
+*/
+app.post("/login", function (request, response) {
+    console.log(request.body); //Allows us to check if we are recieving POST data.  We now want to check if this info is correct then send our user to the invoice(?)
+    the_username = request.body.username; //Username is one of the properties of our form! Check console; we get username and password! This is telling us to assign that to a new variable
+    if(typeof users_reg_data[the_username] != 'undefined') { //If our json data has a property called the_username (grabbed from login page), then run this code (because then that username is defined and exists!)
+        if (users_reg_data[the_username].password == request.body.password) { //If the json password data matches what came from our POST request, run more code by sending them to the thank-you login page/invoice
+            response.send(the_username + ' logged in!');
+        } else {
+            response.redirect('/login'); //redirect back to the login page if the username and password isn't defined/recognized
+        }
+    }
+    /*
+    if(typeof users_reg_data[the_username] == 'undefined') {
+        response.redirect('/register');
+    }
+    */
+
+    
+    var loginstuff = fs.readFileSync('./login_template.view', 'utf8');
+    response.send(eval('`' + loginstuff + '`')); /* Play response for valid purchases using 
+    template view file; backticks used to allow for template strings '${}' found in the template file */
+});
+
+
 
 //-----Display Purchase (Invoice Output)------------------------------------
 /* 
@@ -130,4 +176,31 @@ function displayPurchase(POST, response) {
         var contents = fs.readFileSync('./invoice_template.view', 'utf8');
         response.send(eval('`' + contents + '`')); /* Play response for valid purchases using 
         template view file; backticks used to allow for template strings '${}' found in the template file */
+}
+
+function displayLogin(POST, response) {
+    var loginstuff = fs.readFileSync('./login_template.view', 'utf8');
+    response.send(eval('`' + loginstuff + '`')); /* Play response for valid purchases using 
+    template view file; backticks used to allow for template strings '${}' found in the template file */
+}
+
+function newRegister(POST, response) {
+    var registrationstuff = fs.readFileSync('./registration_template.view', 'utf8');
+    response.send(eval('`' + registrationstuff + '`')); /* Play response for valid purchases using 
+    template view file; backticks used to allow for template strings '${}' found in the template file */
+}
+
+function checkRegistration() { //INSERT PARAMETERS
+    
+    //First name, only letters, no more than 30 characters, case insensitive
+
+    //Last name, only letters, no more than 30 characters, case insensitive
+
+    //Email X@Y.Z format, X can only contain letters,num,characters "_" or ".", Y can only contain letters, num, ".", Z must be 2 letters max, case insensitive
+    
+    //Username must be minimum 4 characters, max 10, letters and numbers only, case insensitive, unique
+    
+    //Password, all characters valid, minimum 6 characters, case sensitive
+
+    //Confirm Pass, repeat above
 }

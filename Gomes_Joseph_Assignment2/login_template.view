@@ -1,0 +1,28 @@
+<head><link href="shop_css.css" rel="stylesheet">
+<style>
+    header {
+
+    }
+    main {
+        width: 600px;
+        height: auto;
+        margin: auto;
+        background-color: mintcream;
+        border: 6px solid black;
+    }
+</style>
+</head>
+
+<body>
+    <header>
+    </header>
+    <main>
+    <h2>Please input login credentials before continuing!</h2>
+    <form action="" method="POST">
+        <input type="text" name="username" size="40" placeholder="Enter Username" ><br />
+        <input type="password" name="password" size="20" placeholder="Enter Password"><br />
+        <br>
+        <input type="submit" value="Submit" id="submit">
+    </form>
+    </main>
+</body>
