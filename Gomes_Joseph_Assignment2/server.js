@@ -39,7 +39,7 @@ Otherwise, if those variables are false, output an invalid message
     if (hasValidQuantities && hasPurchases) { //If both hasValidQuantities and hasPurchases are true
         
         //Temporary redirect (307) gotten from https://stackoverflow.com/questions/38810114/node-js-with-express-how-to-redirect-a-post-request
-        response.redirect(307, '/login'); //If I have data(above), use displayPurcahse function
+        newRegister(POST, response); //If I have data(above), use displayPurcahse function
     } else { //Else send user to Error page; uses some internal css
         response.send(` 
             <head>
