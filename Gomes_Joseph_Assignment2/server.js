@@ -191,6 +191,7 @@ app.post("/register", function (request, response) {
     `);
     }
     //If the_username is not a defined object in our json array (defined as users_reg_data) and the input of the password form field & confirm password form fields are the same then register new user
+    var newReg = false;
     if((users_reg_data[the_username] == undefined) && (pass == confirm_pass)) {
             users_reg_data[the_username] = {}; //create empty object for array called the_username
             users_reg_data[the_username].fullName = request.body.fullName; //get fullName from fullName textbox in the register form and add it to the new object array
@@ -199,8 +200,11 @@ app.post("/register", function (request, response) {
             
             fs.writeFileSync(filename, JSON.stringify(users_reg_data, null, 2)); //This will turn our object into a JSON string (null,2 keeps file neat)
         
-            displayPurchase(the_username, response); //If username from the request form is equal to our json data variable, run our displayPurchase function to show invoice.  Pass both the_username data for personalization and response
+            var newReg = true;
     } 
+    if(newReg = true) {
+        displayPurchase(the_username, response); //If username from the request form is equal to our json data variable, run our displayPurchase function to show invoice.  Pass both the_username data for personalization and response
+    }
 });
 
 //-----NON-NEG CHECK------------------------------------
