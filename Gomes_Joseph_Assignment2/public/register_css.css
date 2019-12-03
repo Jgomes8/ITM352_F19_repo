@@ -1,0 +1,45 @@
+body {
+    margin: auto;
+    width: auto;
+    text-align: center;
+    background-image: url(./images/background.png);
+    background-size: 100% 100%;
+}
+
+/*CSS for input form field borders used from: https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation */
+/*CSS for visual indicator of invalid data; empty forms match to this*/
+input:invalid {
+    border: 2px dashed red;
+}
+/*CSS for visual indicator of valid data*/
+input:valid {
+    border: 2px solid black;
+}
+
+/*CSS for registration form formatting used from: https://www.w3resource.com/javascript/form/javascript-sample-registration-form-validation.php */
+/*remove bullets for form; set margin*/
+form li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+/*float label text to left but keep text-alignment to right to stay straight with formfields*/
+form ul li label {
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: right;
+    margin-right: 10px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+}
+/*float formfields to left; lineup with label text*/
+form ul li input {
+    float: left;
+    margin-bottom: 10px;
+}
+/*Center input type submit buttons*/
+[type="submit"] {
+    clear: left;
+    margin: 20px 0 0 160px;
+    font-size:18px
+}

@@ -20,7 +20,7 @@ if (fs.existsSync(filename)) { //This will go and check if a filename exists and
     //This will append/add a new user to our json data.  Once we have run it ONCE, we no longer need it as it has written the new data to our JSON file.
     /*
     username = 'newuser';
-    users_reg_data[username] = {};
+    users_reg_data[username] = {}; //This sets username in users_reg_data to whatever is in []. {} is empty until then. NOTE: If this username already exists, it overwrites the old one.
     users_reg_data[username].password = 'newpass';
     users_reg_data[username].email = 'newuser@user.com';
 

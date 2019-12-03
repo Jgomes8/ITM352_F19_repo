@@ -9,6 +9,7 @@
 }
 
 /*CSS For main shop page*/
+/*Set margin, text-alignment, and add a background image*/
 body {
     margin: auto;
     width: auto;
@@ -16,6 +17,7 @@ body {
     background-image: url(./images/background.png);
     background-size: 100% 100%;
 }
+/*Create red background with border for main content*/
 main {
     background-color: maroon;
     border: 6px solid black;
@@ -23,6 +25,7 @@ main {
     margin-left: 125px;
     margin-right: 125px;
 }
+/*Set shop item organization display; add white background and border to individual items ontop of red background*/
 #shopGrid {
     word-wrap: normal;
     background-color: mintcream;
@@ -32,10 +35,12 @@ main {
     padding: 5px;
     border: 6px double black;
 }
+/*Set image size for div*/
 #shopGrid > img  {
     width: 230px;
     height: 190px;
 }
+/*Set purchaseArea (button) to have similar colorscheme as shop items above*/
 #purchaseArea {
     background-color: mintcream;
     text-align: center;
@@ -44,19 +49,23 @@ main {
     width: 400px;
     margin: auto;
 }
+/*Set size of input submit buttons*/
 input[type=submit] {
     width: 200px;
     height: 50px;
 }
+/*Set size of text form fields*/
 input[type=text] {
     width: 145px;
 }
+/*Set color to footer information*/
 footer {
     background-color: black;
     color: mintcream;
 }
-/*Table CSS for invoice*/
+
+/*Table CSS for invoice for displayPurchase() function*/
+/*Set background-color to white colorscheme*/
 table {
     background-color: mintcream;
 }
-

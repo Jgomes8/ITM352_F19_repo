@@ -1,11 +1,12 @@
-<head><link href="shop_css.css" rel="stylesheet">
+<head>
+<link href="login_css.css" rel="stylesheet">
 <style>
     header {
 
     }
     main {
         width: 600px;
-        height: auto;
+        height: 300px;
         margin: auto;
         background-color: mintcream;
         border: 6px solid black;
@@ -17,12 +18,27 @@
     <header>
     </header>
     <main>
-    <h2>Please input login credentials before continuing!</h2>
-    <form action="" method="POST">
-        <input type="text" name="username" size="40" placeholder="Enter Username" ><br />
-        <input type="password" name="password" size="20" placeholder="Enter Password"><br />
+    <h2>Please input your login credentials before continuing with your purchase!</h2>
+    <form name="loginSheet" action="./login" method="POST">
+    <ul>    
+        <li><label for="username">Username:</label></li>
+        <li><input type="text" name="username" size="20" placeholder="Enter Username" ></li>
+        <li><label for="password">Password:</label></li>
+        <li><input type="password" name="password" size="20" placeholder="Enter Password"></li>
         <br>
-        <input type="submit" value="Submit" id="submit">
+        <li><input type="submit" value="Submit" id="submit"></li>
+    </ul>
+    <br>
+    <br>
+    <br>
+    <br>
+    </form>
+    <h4>New User? Press the button below to register!</h4>
+    <br>
+    <form name="register" action="./register" method="GET">
+        <ul>
+            <li><label for="registerButton"><button name="registerButton">Register</button></label></li>
+        </ul>
     </form>
     </main>
 </body>

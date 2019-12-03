@@ -14,9 +14,9 @@
 </style>
 </head>
 <header>
-    <h1>Thank you for your purchase!</h1>
+    <h1>Thank you for your purchase, ${the_username}!</h1>
     <p>
-    A confirmation of your purchase has been sent to your email.
+    A confirmation of your purchase has (not) been sent to your email.
     If you want to continue shopping, please select the back button!
     </p>
 </header>

@@ -1,0 +1,44 @@
+body {
+    margin: auto;
+    width: auto;
+    text-align: center;
+    background-image: url(./images/background.png);
+    background-size: 100% 100%;
+}
+h2, h4 {
+    text-align: center;
+}
+
+/*CSS for registration form: https://www.w3resource.com/javascript/form/javascript-sample-registration-form-validation.php */
+/*remove bullets for form; set margin*/
+form li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+/*float label text to left but keep text-alignment to right to stay straight with formfields*/
+form ul li label {
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: right;
+    margin-right: 10px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+}
+/*float formfields to left; lineup with label text*/
+form ul li input {
+    float: left;
+    margin-bottom: 10px;
+}
+/*Center input type submit buttons*/
+[type="submit"] {
+    clear: left;
+    margin: 10px 0 2 220px;
+    font-size:18px
+}
+/*Center button for registration page*/
+button {
+    clear: left;
+    margin: -40px 0 0 215px;
+    font-size:18px
+}

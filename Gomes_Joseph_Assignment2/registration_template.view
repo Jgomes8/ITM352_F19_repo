@@ -1,11 +1,12 @@
-<head><link href="shop_css.css" rel="stylesheet">
+<head>
+<link href="register_css.css" rel="stylesheet">
 <style>
     header {
 
     }
     main {
         width: 600px;
-        height: auto;
+        height: 300px;
         margin: auto;
         background-color: mintcream;
         border: 6px solid black;
@@ -17,16 +18,22 @@
     <header>
     </header>
     <main>
-    <h2>Please input login credentials before continuing!</h2>
-    <form action="" method="POST">
-        First Name: <input type="text" name="firstName" size="40" placeholder="Enter First Name"><br />
-        Last Name: <input type="text" name="lastName" size="40" placeholder="Enter Last Name"><br />
-        Email: <input type="email" name="email" size="20" placeholder="Enter Email Address"><br />
-        Username: <input type="text" name="username" size="40" placeholder="Enter Username"><br />
-        Password: <input type="password" name="password" size="20" placeholder="Enter Password"><br />
-        Confirm Password: <input type="password" name="confirmpassword" size="20" placeholder="Confirm Password"<br />
+    <h2>Please Register below to continue shopping!</h2>
+    <form action="./register" method="POST">
+    <ul>
+        <li><label for="fullName">Full Name:</label></li>
+        <li><input type="text" name="fullName" size="20" placeholder="Enter Your Name" required pattern=[A-Za-z ]{1,30} oninvalid="this.setCustomValidity('Please input your full name here. Letters only. Max 30 characters.')" oninput="this.setCustomValidity('')"></li>
+        <li><label for="username">Username:</label></li> 
+        <li><input type="text" name="username" size="20" placeholder="Enter Username" required pattern="[A-Za-z0-9]{4,10}" oninvalid="this.setCustomValidity('Please input a login username here. Letters and numbers only. Minimum 4 characters, Maximum 10 characters.')" oninput="this.setCustomValidity('')"></li>
+        <li><label for="email">Email: </label></li>
+        <li><input type="text" name="email" size="20" placeholder="Enter Email Address" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" oninvalid="this.setCustomValidity('Please input a valid email address.')" oninput="this.setCustomValidity('')"></li>
+        <li><label for="password">Password:</label></li> 
+        <li><input type="password" name="password" size="20" placeholder="Enter Password" required minlength="6" oninvalid="this.setCustomValidity('Please input your password here. Minimum 6 characters.')" oninput="this.setCustomValidity('')"></li>
+        <li><label for="confirmPassword">Confirm Password:<label></li>
+        <li><input type="password" name="confirmPassword" size="20" placeholder="Confirm Password" required minlength="6" oninvalid="this.setCustomValidity('Please input your password here. Must match above form.')" oninput="this.setCustomValidity('')"></li>
         <br>
-        <input type="submit" value="Submit" id="submit">
+        <li><input type="submit" value="Complete Registration" id="submit"></li>
+    </ul>
     </form>
     </main>
 </body>

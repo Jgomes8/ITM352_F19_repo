@@ -1,8 +1,22 @@
 {
-    "test_user":{
-        "firstName":"John",
-        "lastName":"Doe",
-        "password":"testpass",
-        "email":"jgomes8@hawaii.edu"
-    }
+  "test_user": {
+    "fullName": "John Doe",
+    "password": "testpass",
+    "email": "testuser123@gmail.com"
+  },
+  "itm352": {
+    "fullName": "ITM 352",
+    "password": "grader",
+    "email": "itm352@hawaii.edu"
+  },
+  "jgomes8": {
+    "fullName": "Joseph",
+    "password": "fakepassword",
+    "email": "jgomes8@hawaii.edu"
+  },
+  "janedoe123": {
+    "fullName": "Jane Doe",
+    "password": "fakepass",
+    "email": "janedoe@gmail.com"
+  }
 }

@@ -7,9 +7,6 @@
     <title>Nostalgia Console Store</title>
     <link href="shop_css.css" rel="stylesheet"> <!-- Link style sheet-->
     <script src="./product.js" type="text/javascript"></script> <!-- Link the product.js file to pull data (uses GET request)-->
-    <script>
-        
-    </script>
 </head>
 <body>
     <header>
@@ -19,9 +16,9 @@
         <form name="purchaseForm" action="./process_form" method="POST"> <!--Create form around shop body, use POST method to send data to process_form-->
         <script>
             //For loop used to output images from product.js file
-            for (i = 0; i < products.length; i++) {
-                document.write(`
-                <div id="shopGrid">
+            for (i = 0; i < products.length; i++) { //For each item in array under array length, write to page that item+info then increment to next item
+                document.write(` 
+                <div id="shopGrid"> 
                     <h2>${products[i].name}</h2>
                     <img src="${products[i].image}">
                     <p><strong>Price: </strong>$${products[i].price}</p>
@@ -32,7 +29,8 @@
         </script>
         <br>
     </main>
-    <div id="purchaseArea">
+    
+    <div id="purchaseArea"> <!--Button input to lead to invoice/login page-->
         <h2>Buy Today!</h2>
         <input type="submit" value="Purchase" name="purchaseButton" onkeyup=""> 
         </form>
