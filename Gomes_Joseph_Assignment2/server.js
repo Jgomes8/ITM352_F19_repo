@@ -124,9 +124,17 @@ app.post("/login", function (request, response) {
     if(typeof users_reg_data[the_username] != 'undefined') { //If our json data has a property called the_username (grabbed from login page), then run this code (because then that username is defined and exists!)
         if (users_reg_data[the_username].password == request.body.password) { //If the json password data matches what came from our POST request, run more code by sending them to the thank-you login page/invoice
             displayPurchase(the_username, response); //If username from the request form is equal to our json data variable, run our displayPurchase function to show invoice.  Pass both the_username data for personalization and response
-        } else {
-            response.redirect('/login'); //redirect back to the login page if the username and password isn't defined/recognized
-        }
+        } 
+    } else { //This will alert the user if their login information does not match. Upon closing the alert it will redirect the user back to the login page.
+        response.send(`
+        <head>
+            <meta http-equiv="refresh" content="5">
+        </head>
+        <script>
+            alert('Your username or password is incorrect! Please try again. If you are a new user please register before continuing with your purchase!');
+            document.location='/login';
+        </script>
+        `)
     }
 });
 
@@ -148,8 +156,18 @@ app.post("/register", function (request, response) {
     //console.log(pass, confirm_pass); //used to check if form data is being grabbed
     
     //Based on what is inputted in registration form fields, one of 3 scenarios will occur:
-    //If a username put into the username register form field is not undefined and can be found in the users_reg_data, then output username error
+    //If a username put into the username register form field is not undefined and can be found in the users_reg_data, then output username error alert, then redirect back to register page
     if(users_reg_data[the_username] != undefined) {
+        response.send(`
+        <head>
+            <meta http-equiv="refresh" content="5">
+        </head>
+        <script>
+            alert('The username you have selected is already in use. Please choose a new username and try again.');
+            document.location='/register';
+        </script>
+        `)
+        /*OLD: if username put into register form field is not undefined and exists in the users_reg_data json, generate an html error page
         response.send(` 
             <head>
                 <link href="shop_css.css" rel="stylesheet">
@@ -168,9 +186,20 @@ app.post("/register", function (request, response) {
                 <p>The username you have selected is already in use. Please select the back button and choose a new username.</p>
             </header>
         `);
+        */
     }
-    //If the password and confirmation password are not the same, output password error
+    //If the password and confirmation password are not the same, output password error alert then redirect back to register form
     if(pass != confirm_pass) {
+        response.send(`
+        <head>
+            <meta http-equiv="refresh" content="5">
+        </head>
+        <script>
+            alert('The passwords you have inputted do not match. Please reconfirm your password to continue with registration.');
+            document.location='/register';
+        </script>
+        `)
+        /*OLD: If passwords do not match, generate an html error page
         response.send(` 
         <head>
             <link href="shop_css.css" rel="stylesheet">
@@ -188,7 +217,8 @@ app.post("/register", function (request, response) {
             <h1>Warning: Passwords Do Not Match</h1>
             <p>The passwords you have inputted do not match. Please select the back button and reconfirm your password to continue with registration.</p>
         </header>
-    `);
+        `);
+        */
     }
     //If the_username is not a defined object in our json array (defined as users_reg_data) and the input of the password form field & confirm password form fields are the same then register new user
     var newReg = false;
