@@ -95,6 +95,13 @@ app.get("/invoice", function (request, response) {
 //This will give us a simple login form. Our URL will run a GET request which will run a function to generate the login form.
 //RECOMMENDATION: for Assignment 2 load login page as its own file
 app.get("/login", function (request, response) {
+    //This should belong in the app.get when we recieve the login form. This would not go in the app.post as that only runs AFTER we login.
+    if (typeof request.cookies.username != 'undefined') { //<-----NEW EX3------ We want to keep people logged in. So if the typeof cookie username is not undefined (someone is logged in), then...
+        response.send(`Welcome back ${request.cookies.username}!` + `<br>`
+        + `You last logged in on ${request.session.last_login}`);
+        return; //This will prevent the server from continuing to respond (as we have another response.send below which would try and send the login info again)
+    }
+    
     // Give a simple login form
     str = `
 <body>
@@ -112,6 +119,8 @@ app.get("/login", function (request, response) {
 //--------------------------------------------------
 //If our server gets a POST request to login, run this instead of the above!
 app.post("/login", function (request, response) {
+
+    
     // Process login form POST and redirect to logged in page if ok, back to login page if not
     console.log(user_product_quantities); //USED TO CHECK IF WE STILL HAVE OUR QUANTITIES
     //The body-parser will alow us to grab the data from the request.body(?)
@@ -119,7 +128,26 @@ app.post("/login", function (request, response) {
     the_username = request.body.username; //Username is one of the properties of our form! Check console; we get username and password! This is telling us to assign that to a new variable
     if(typeof users_reg_data[the_username] != 'undefined') { //If our json data has a property called the_username (grabbed from login page), then run this code (because then that username is defined and exists!)
         if (users_reg_data[the_username].password == request.body.password) { //If the json password data matches what came from our POST request, run more code by sending them to the thank-you login page/invoice
-            response.redirect('/invoice');  //If I log in successfully, redirect to the /invoice app.get above!!!
+            //response.redirect('/invoice');  //If I log in successfully, redirect to the /invoice app.get above!!!
+            
+            //NEW EX2D-------------------------------------------------------------------
+            //This will let us output, on our first login, that this is the first login
+            //On subsequent logins, it will output the previous login information, and replace that info with the new login info
+            //This could be used similarly on Assignment 2 to store quantities(?)
+            msg = '';
+            if (typeof request.session.last_login != 'undefined') {
+                var msg = `You last logged in on ${request.session.last_login}`;
+                //This lets us, using our session, when we login it will output the current date/time using built-in Date() function
+                var now = Date();  //Get current time.
+            } else {
+                now = 'first login!';
+            }
+            request.session.last_login = now; //Put it into current session using key 'last_login'
+            //NEW EX3A/B --------------- CHAINED RESPONSES --------------------------
+            response
+                .cookie('username', the_username, {maxAge: 30*1000}) //30 seconds for cookie
+                .send(`${the_username} is logged in at ${now}`);
+            //-----------------------------------------------------------------------------
         
         } else {
             response.redirect('/login'); //redirect back to the login page if the username and password isn't defined/recognized

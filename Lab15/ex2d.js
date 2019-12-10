@@ -119,7 +119,23 @@ app.post("/login", function (request, response) {
     the_username = request.body.username; //Username is one of the properties of our form! Check console; we get username and password! This is telling us to assign that to a new variable
     if(typeof users_reg_data[the_username] != 'undefined') { //If our json data has a property called the_username (grabbed from login page), then run this code (because then that username is defined and exists!)
         if (users_reg_data[the_username].password == request.body.password) { //If the json password data matches what came from our POST request, run more code by sending them to the thank-you login page/invoice
-            response.redirect('/invoice');  //If I log in successfully, redirect to the /invoice app.get above!!!
+            //response.redirect('/invoice');  //If I log in successfully, redirect to the /invoice app.get above!!!
+            
+            //NEW EX2D-------------------------------------------------------------------
+            //This will let us output, on our first login, that this is the first login
+            //On subsequent logins, it will output the previous login information, and replace that info with the new login info
+            //This could be used similarly on Assignment 2 to store quantities(?)
+            msg = '';
+            if (typeof request.session.last_login != 'undefined') {
+                var msg = `You last logged in on ${request.session.last_login}`;
+                //This lets us, using our session, when we login it will output the current date/time using built-in Date() function
+                var now = Date();  //Get current time.
+            } else {
+                now = 'first login!';
+            }
+            request.session.last_login = now; //Put it into current session using key 'last_login'
+            response.send(`${the_username} is logged in at ${now}`);
+            //-----------------------------------------------------------------------------
         
         } else {
             response.redirect('/login'); //redirect back to the login page if the username and password isn't defined/recognized
