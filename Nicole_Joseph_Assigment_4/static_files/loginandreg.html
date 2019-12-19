@@ -8,6 +8,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login and Register</title>
 
+    <script src="jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+    
+    //-------------------------------------------------------------------------------
+    //Register Button link to SQLite database
+    //-------------------------------------------------------------------------------
+    $('#registerButton').click(() => { //$ grabs element name, # grabs element ID's; grab ID of button
+      console.log('Button has been clicked!');
+      $.ajax({
+        url: 'reg',
+        type: 'POST',
+        data: { //making an array object to hold data that is being posted (also grabbed from $elements)
+          fullname: $('#field_fullname').val(),
+          username: $('#field_username').val(),
+          email: $('#field_email').val(),
+          password: $('#field_pwd1').val(),
+        },
+        success: (data) => { //success function is this code works; do callback function
+          //console.log('User Registered!');
+          $('#status').html(data.message); //Output this data to status div as a message
+        }
+      });
+    });
+    //-------------------------------------------------------------------------------
+    </script>
 
 </head>
 <div id="menu">
@@ -30,6 +55,7 @@
 <body>
     <main>
     <br>
+    <div id="status"></div>
     <div class="reg">
             <form id="myForm" method="POST" action="reg">
             <div class="container">
@@ -38,12 +64,12 @@
                 <hr>
 
                <p><label for="fullname"><b>Full Name:</b></label>
-                <input type="text" placeholder="Enter Full Name" name="fullname" required></p>
+                <input type="text" placeholder="Enter Full Name" id="field_fullname" name="fullname" required></p>
 
                 <p> <b>Username: </b><input id="field_username" title="Username must not be blank and contain only letters, numbers and underscores." type="text" required pattern="\w+" name="username" placeholder="Username"></p>
 
                <p> <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" required></p>
+                <input type="text" placeholder="Enter Email" id="field_email" name="email" required></p>
 
                 <p><b>Password:</b> <input id="field_pwd1" title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="pwd1"></p>
                        
@@ -53,7 +79,7 @@
                 <hr>
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-               <p> <button type="submit" class="registerbtn" name="register" onclick="check()">Register</button></p>
+               <p> <button type="submit" class="registerbtn" id="registerButton" name="register" onclick="check()">Register</button></p>
                </div>
 <!--W3 schools-->
             <div class="container signin">
@@ -131,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
     usernameInput.addEventListener("keyup", function(e) {
       usernameInput.setCustomValidity(this.validity.patternMismatch ? usernameInput.title : "");
     }, false);
-
+    
     pwd1Input.addEventListener("keyup", function(e) {
       this.setCustomValidity(this.validity.patternMismatch ? pwd1Input.title : "");
       if(this.checkValidity()) {

@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
 
-var filename = 'user_registration_data.json';
+//var filename = 'user_registration_data.json';
 var filename2 = 'managerpassword.json';
 
 var app = express(); //Initialize express module for sessions, requests, etc.
@@ -13,15 +13,10 @@ var db = new sqlite3.Database('customer_data.db'); //Set db variable as database
 
 app.use(express.static('static_files'));
 
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
-
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
+/*
 if (fs.existsSync(filename)) { 
     stats = fs.statSync(filename); 
     loginData = fs.readFileSync(filename, 'utf-8') 
@@ -30,6 +25,7 @@ if (fs.existsSync(filename)) {
 } else {
     console.log(filename + ' does not exist!'); 
 }
+*/
 
 if (fs.existsSync(filename2)) { 
     stats = fs.statSync(filename2); 
@@ -43,6 +39,11 @@ if (fs.existsSync(filename2)) {
 app.get('/', function(request, response) {
 	response.sendFile(path.join(__dirname + '/index.html'));
 });
+
+
+//-------------------------------------------------------------------------------
+//Customer Login Methods
+//-------------------------------------------------------------------------------
 
 app.get('/login', function(request, response) {
 	response.sendFile(path.join(__dirname + '/loginandreg.html'));
@@ -69,6 +70,37 @@ app.post("/login", function(request, response) {
 	}
 });
 
+//-------------------------------------------------------------------------------
+//Customer Registration Methods
+//-------------------------------------------------------------------------------
+
+app.post('/reg', (request, response) => { //I want to POST new data to data collection
+	console.log(request.body);
+	
+	//To insert into the database, we must use a db.run
+	//This doesnt grab data, but instead just runs a SQL query
+	db.run(
+	  'INSERT INTO user_info VALUES ($fullname, $username, $email, $password)',
+	  { //When the above query is run, the below parameters is passed into the SQL query variables
+		$fullname: request.body.fullname,
+		$username: request.body.username,
+		$email: request.body.email,
+		$password: request.body.password
+	  },
+	  //Run callback if there is an error
+	  (err) => {
+		if (err) {
+		  console.log({message: 'error in app.post(/reg)'});
+		} else {
+		  console.log({message: 'successfully run app.post(/reg)'})
+		}
+	  }
+	);
+	
+	//response.redirect('/loginandreg.html');
+});
+
+  /*
 app.post("/reg", function(request, response) {
 	username = request.body.username;
 	var psw = request.body.pwd1;
@@ -86,30 +118,18 @@ app.post("/reg", function(request, response) {
         response.redirect('/loginandreg.html');
 	}
 });
+*/
 
 
-//Will redirect to file post_reg.html after registration above
+//Will redirect to file LoginInvoice.html after registration above
 app.get('/LoginInvoice', function(request, response) {
 	response.sendFile(__dirname + '/LoginInvoice.html');
   });
 
-// app.post('/post_reg', function(request, response) {
-// 	response.send('hi');
-// });
 
-/*
-app.post('/points', function(request, response) {
- 	console.log('Connected 2!');
- 	var points_sql = "UPDATE user_info SET points = '"index"' WHERE cust_id='"customer_id"' ";
- 	connection.query(points_sql, function (err, result) {
- 		if (err) throw err;
- 		console.log("Updated Table");
- 	})
- });
- */
-
-
-
+//-------------------------------------------------------------------------------
+//Manager Login Method
+//-------------------------------------------------------------------------------
 
 app.get('/managerlogin', function(request, response) {
 	response.sendFile(path.join(__dirname + '/managerlogin.html'));
@@ -140,7 +160,6 @@ app.get('/users', (request, response) => {
 	  console.log(rows); //Output contents of rows from table
 	  var allUsernames = rows.map(e => e.username); //calling map on rows will iterate through every element then assign to temp variable e. Arrow => will create a function that takes an e variable and returns e.name (e.g. John, Philip, Carol)
 	  console.log(allUsernames); //Output only name values from rows
-	  response.send(allUsernames); //Send data back to webpage that requested data
 	});
 });
   
@@ -172,4 +191,4 @@ app.get('/users/:userid', (request, response) => {
 
   });
 
-  app.listen(8080, () => { console.log('Server started at http://localhost:3000/');});
+  app.listen(8080, () => { console.log('Server started at http://localhost:8080/');});
