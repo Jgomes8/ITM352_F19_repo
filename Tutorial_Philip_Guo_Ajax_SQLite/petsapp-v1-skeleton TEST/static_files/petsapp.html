@@ -1,0 +1,96 @@
+<!--
+  Part 4: We want to start
+-->
+<html>
+<head>
+<title>PetsApp</title>
+
+<script src="jquery-3.3.1.min.js"></script> <!--Imports JQuery-->
+
+<script type="text/javascript">
+//var $ = require('jquery'); //npm install jquery enables use of jquery; already imported above
+
+$(document).ready(() => { //runs anonymous function when document is fully loaded
+  console.log('hello browser!');
+  
+  //We want to get specific usernames/profiles using the get profile button
+  //An easy way of doing this is getting the value of the textbox (namebox)
+  $('#getProfile').click(() => {
+    var requestURL = 'users/' + $('#nameBox').val(); //Jquery select namebox element; val function is a way to get current value of a textbox. 
+    //This will basically create a variable string of users/ (from our get request) and whatever data was inputted into the nameBox textbox element
+    console.log('Making Ajax request to:', requestURL); //To test, we can see in our browser's console if we are getting the correct URL string we desire to match our server processing
+
+    $.ajax({
+      url: requestURL, //AJAX function, first object is our URL which we created and placed into this variable
+      type: 'GET', //Second object is again our server methods
+      dataType: 'json',
+      success: (data) => { //function we want to run when our ajax runs successfully
+        console.log('You received some data!', data); //When we succeed, we just want to print out our data
+      
+        //Our database has 2 keys: job and pet. Lets do stuff with it
+        if (data.job && data.pet) { //if the data we get contains both data on jobs and pets, display our AJAX success in the status div (found in HTML below)
+          $('#status').html('Successfully fetched data at URL: ' + requestURL);
+          $('#jobDiv').html('My job is ' + data.job); //If job data exist, output into the job div empty div HTML below
+          $('#petImage').attr('src', data.pet).attr('width','300px'); //If we get pet data, we want to set the image SOURCE ATTRIBUTE (img src) to set the actual url and display that image to the empty div
+        } else { //else, display an error in the status div below.
+          $('#status').html('Error: could not find user at URL: ' + requestURL);
+          $('#jobDiv').html(''); //If we fail our request, output empty string since user doesnt have job
+          $('#petImage').attr('src','').attr('width', '0px'); //We can chain another attribute to set the CSS. We set it for 0 here so its invisible if there is an unsuccessful request.
+        }
+
+      }
+    });
+
+  });
+  
+  //---------------------------------------------------------
+  
+  //We want to hook up getallusernames button to the database
+  //In jquery, the $ with string # with some id will SELECT that element by id
+  $('#allUsersButton').click(() => { //On button click, we will run an anonymous function
+    console.log('clicked!'); //Test if function works
+
+    /*
+    What we actually want to do when we click this button however is to run our app/get('/users')
+    So we need to run AJAX to be able to do this. (AJAX lets you render HTML without reloading the page)
+    AJAX also lets you make a request to the server without reloading the page.
+    */
+    $.ajax({ //This is an AJAX function. A single paramter is required, () stands for function being called, {} is our parameter
+      url: 'users/', //First object field is URL; we want to visit this when clicked
+      type: 'GET', //Second object will be our GET request to match our app.get methods on the server
+      dataType: 'json', //Third object datatype says we expect data shared between server and browser to be parsed as a json object
+      success: (data) => { //Fourth object points to a callback function when ajax call succeeds
+        console.log('Ajax success!', data); //Test to see if our button will output both string and data variable
+        $('#status').html('All users: ' + data); //This will select our status div HTML found below, and will document write string and what is saved to data variable
+      } 
+    });
+
+  }); 
+
+  //Basic ajax error. Easy way to see this is to delete server.js
+  $(document).ajaxError(() => {
+    $('#status').html('Error: unknown ajaxError!');
+  });
+
+  
+
+});
+
+</script>
+
+</head>
+<body>
+  <h1>Welcome to PetsApp!</h1>
+
+  Name: <input id="nameBox" type="text" size="20"/>
+  <button id="getProfile">Get profile</button>
+  <button id="allUsersButton">Get all usernames</button>
+
+  <div id="jobDiv"></div>
+  <img id="petImage"></img>
+
+  <hr/>
+
+  <div id="status"></div> <!--Ajax request pushes info here-->
+</body>
+</html>
