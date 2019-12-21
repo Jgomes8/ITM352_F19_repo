@@ -1,537 +1,580 @@
+/*made myself*/
 header{
-    background-image: url(./images/Morning-Brew-Food-Shots-2788.jpg);
-    background-position: .5px;
-    width: 100%;
-    height: 220px;
-    text-align: center;
-    font-family: fantasy,cursive,Brush Script MT,Brush Script MT,sans-serif;
-    /*background: rgba(255,255,255,.5);*/
-    font-size: 65px;
-    overflow: hidden;
-    filter: alpha(opacity=50);
-    color: white;
+  background-image: url(./images/Morning-Brew-Food-Shots-2788.jpg);
+  background-position: .5px;
+  width: 100%;
+  height: 220px;
+  text-align: center;
+  font-family: fantasy,cursive,Brush Script MT,Brush Script MT,sans-serif;
+  /*background: rgba(255,255,255,.5);*/
+  font-size: 65px;
+  overflow: hidden;
+  filter: alpha(opacity=50);
+  color: white;
 }
 
+/*made myself*/
 .logo{
-  width: 120px;
+width: 120px;
 }
 
+/*made myself*/
 body {
-    font-family: Arial, Helvetica,Brush Script MT ,Brush Script MT,sans-serif;
-    background-image: url(./images/body.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-attachment: fixed;
+  font-family: Arial, Helvetica,Brush Script MT ,Brush Script MT,sans-serif;
+  background-image: url(./images/body.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
 }
 * {box-sizing: border-box;}
 
 /* Button used to open the contact form - fixed at the bottom of the page */
 /*.open-button {
-  background-color: #E5DACD;
-  color: black;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  /*position: fixed;
-  bottom: 23px;
-  width: 280px;
-  font-family: cursive,fantasy, sans-serif;
-  font-size: medium;
+background-color: #E5DACD;
+color: black;
+padding: 16px 20px;
+border: none;
+cursor: pointer;
+opacity: 0.8;
+/*position: fixed;
+bottom: 23px;
+width: 280px;
+font-family: cursive,fantasy, sans-serif;
+font-size: medium;
 }
-
 /* The popup form - hidden by default 
 .form-popup {
-  display: none;
-  /*position: fixed;
-  bottom: 0;
-  right: 215px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-  width: 280px;
-  font-size: medium;
+display: none;
+/*position: fixed;
+bottom: 0;
+right: 215px;
+border: 3px solid #f1f1f1;
+z-index: 9;
+width: 280px;
+font-size: medium;
 }
-
-
 /* Add styles to the form container 
 .form-container {
-  max-width: 350px;
-  padding: 10px;
-  background-color: white;
-  font-family: fantasy, cursive, sans-serif;
+max-width: 350px;
+padding: 10px;
+background-color: white;
+font-family: fantasy, cursive, sans-serif;
 }
-
 /* Full-width input fields 
 .form-container input[type=text], .form-container input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
+width: 100%;
+padding: 15px;
+margin: 5px 0 22px 0;
+border: none;
+background: #f1f1f1;
 }
-
 /* When the inputs get focus, do something 
 .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-  position: relative;
+background-color: #ddd;
+outline: none;
+position: relative;
 }
-  .button{
-    border: none;
-    color: black;
-    padding: 16px 20px;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
-    font-family: cursive,fantasy, sans-serif;
-    display: block;
-    position: relative;
-    font-size: medium;
-   
-}
-/* Set a style for the submit/login button 
-.form-container .btn:hover {
-  background-color: rgb(138, 143, 138);
-  color: white;
-  padding: 16px 20px;
+.button{
   border: none;
-  cursor: pointer;
+  color: black;
+  padding: 16px 20px;
   width: 100%;
   margin-bottom:10px;
   opacity: 0.8;
   font-family: cursive,fantasy, sans-serif;
   display: block;
   position: relative;
+  font-size: medium;
+ 
 }
-
+/* Set a style for the submit/login button 
+.form-container .btn:hover {
+background-color: rgb(138, 143, 138);
+color: white;
+padding: 16px 20px;
+border: none;
+cursor: pointer;
+width: 100%;
+margin-bottom:10px;
+opacity: 0.8;
+font-family: cursive,fantasy, sans-serif;
+display: block;
+position: relative;
+}
 /* Add a red background color to the cancel button 
 .form-container .cancel:hover {
-  background-color: rgb(138, 143, 138);
-  font-family: cursive,fantasy, sans-serif;
-  display: block;
-  position: relative;
+background-color: rgb(138, 143, 138);
+font-family: cursive,fantasy, sans-serif;
+display: block;
+position: relative;
 }
-
 /* Add some hover effects to buttons 
 .form-container .btn:hover, .open-button:hover {
-  opacity: 1;
+opacity: 1;
 }
-
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    font-family: cursive,fantasy, sans-serif;
-    font-size: 40px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: cursive,fantasy, sans-serif;
+  font-size: 40px;
 }
-
 li {
-  float: right;
-  
-}
+float: right;
 
+}
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 16px;
-  text-decoration: none;
+display: block;
+color: white;
+text-align: center;
+padding: 16px;
+text-decoration: none;
 }
-
 li a:hover {
-  color:red;
+color:red;
 }
 */
 
+/*made myself*/
 .navbar {
-  overflow: hidden;
-  background-color: black;
-  top: 0;
-  width: 100%;
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT, sans-serif;
+overflow: hidden;
+background-color: black;
+top: 0;
+width: 100%;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT, sans-serif;
 }
 
+/*made myself*/
 .navbar a {
-  float: right;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 30px;
+float: right;
+display: block;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 30px;
 }
 
+/*made myself*/
 .navbar a:hover {
-  color:red;
+color:red;
 }
 
+/*made myself*/
 .main {
-  padding: 16px;
-  margin-top: 30px;
-  height: 1500px; /* Used in this example to enable scrolling */
+padding: 16px;
+margin-top: 30px;
+height: 1500px; /* Used in this example to enable scrolling */
 }
 
+/*made myself*/
 #container{
-    background-color:black;
-    opacity: 0.8;
-    width: 250px;
-    font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+  background-color:black;
+  opacity: 0.8;
+  width: 250px;
+  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
 
 }
 
+/*made myself*/
 #menu{
-    height: 100px;
+  height: 100px;
 }
 
 
 
 /*login and registration css*/
-
+/*made myself*/
 input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+box-sizing: border-box;
 }
 
 /* Set a style for all buttons */
+/*w3 schools*/
 button {
-  border: none;
-    color: black;
-    padding: 16px 20px;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
-    font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-    display: block;
-    position: relative;
-    font-size: medium;
-}
-
-button:hover {
-  background-color: rgb(138, 143, 138);
-  color: white;
+border: none;
+  color: black;
   padding: 16px 20px;
-  border: none;
-  cursor: pointer;
   width: 100%;
   margin-bottom:10px;
   opacity: 0.8;
   font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
   display: block;
   position: relative;
+  font-size: medium;
+}
+
+/*w3 schools*/
+button:hover {
+background-color: rgb(138, 143, 138);
+color: white;
+padding: 16px 20px;
+border: none;
+cursor: pointer;
+width: 100%;
+margin-bottom:10px;
+opacity: 0.8;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+display: block;
+position: relative;
 }
 
 /* Extra styles for the cancel button */
 
 
 /* Center the image and position the close button */
+/*w3 schools*/
 .imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-  position: relative;
+text-align: center;
+margin: 24px 0 12px 0;
+position: relative;
 }
+
+/*w3 schools*/
 
 img.avatar {
-  width: 500px;
-  border-radius: 100px;
+width: 500px;
+border-radius: 100px;
 }
 
+/*made myself*/
 .container {
-  padding: 28px;
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+padding: 28px;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
 }
 
+/*w3 schools*/
 span.psw {
-  float: right;
-  padding-top: -3px;
+float: right;
+padding-top: -3px;
 }
 
+/*w3 schools*/
+
+/*made myself*/
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;
-  margin:auto;
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%;
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+padding-top: 60px;
+margin:auto;
 }
 
+/*made myself*/
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  border: 1px solid #888;
-  width: 52%; /* Could be more or less, depending on screen size */
+background-color: #fefefe;
+margin: auto;
+border: 1px solid #888;
+width: 52%; /* Could be more or less, depending on screen size */
 }
 
+/*made myself*/
 /* The Close Button (x) */
 .close {
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #000;
-  font-size: 35px;
-  font-weight: bold;
+position: absolute;
+right: 25px;
+top: 0;
+color: #000;
+font-size: 35px;
+font-weight: bold;
 }
+
+
+/*w3 schools*/
 
 /* Add Zoom Animation */
 .animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+-webkit-animation: animatezoom 0.6s;
+animation: animatezoom 0.6s
 }
 
+/*w3 schools*/
+
 @-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)} 
-  to {-webkit-transform: scale(1)}
+from {-webkit-transform: scale(0)} 
+to {-webkit-transform: scale(1)}
 }
-  
+
+/*w3 schools*/
+
 @keyframes animatezoom {
-  from {transform: scale(0)} 
-  to {transform: scale(1)}
+from {transform: scale(0)} 
+to {transform: scale(1)}
 }
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
+span.psw {
+   display: block;
+   float: none;
+}
+.cancelbtn {
+   width: 100%;
+}
 }
 
+/*made myself*/
 /* Overwrite default styles of hr */
 hr {
-  border: 1px solid #f1f1f1;
-  margin: auto;
+border: 1px solid #f1f1f1;
+margin: auto;
 }
 
+/*made myself*/
 /* Set a style for the submit button */
 .registerbtn {
-  border: none;
-    color: black;
-    padding: 16px 20px;
-    width: 100%;
-    margin: auto;
-    opacity: 0.8;
-    font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-    display: block;
-    position: relative;
-    font-size: medium;
-}
-
-.registerbtn:hover {
-  background-color: rgb(138, 143, 138);
-  color: white;
+border: none;
+  color: black;
   padding: 16px 20px;
-  border: none;
-  cursor: pointer;
   width: 100%;
   margin: auto;
   opacity: 0.8;
   font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
   display: block;
   position: relative;
+  font-size: medium;
 }
 
+/*made myself*/
+.registerbtn:hover {
+background-color: rgb(138, 143, 138);
+color: white;
+padding: 16px 20px;
+border: none;
+cursor: pointer;
+width: 100%;
+margin: auto;
+opacity: 0.8;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+display: block;
+position: relative;
+}
+
+/*w3 schools*/
 /* Add a blue text color to links */
 a {
-  color: dodgerblue;
+color: dodgerblue;
 }
 
+/*w3 school*/
 /* Set a grey background color and center the text of the "sign in" section */
 .signin {
-  background-color: #f1f1f1;
-  text-align: center;
-  width: 975px;
+background-color: #f1f1f1;
+text-align: center;
+width: 975px;
 }
 
+/*made myself*/
 .reg{
-  background-color: rgba(255,255,255,.8);
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-  margin: auto;
-  max-width: 1000px;
-  padding: 10px;
+background-color: rgba(255,255,255,.8);
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+margin: auto;
+max-width: 1000px;
+padding: 10px;
 }
 
+/*made myself*/
 .reg2{
-  background-color: rgba(255,255,255,.8);
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-  margin: auto;
-  max-width: 1000px;
-  padding: 10px;
+background-color: rgba(255,255,255,.8);
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+margin: auto;
+max-width: 1000px;
+padding: 10px;
 }
 
+/*made myself*/
 /*some general display items*/
 .display{
-  background-color: rgba(255,255,255,.8);
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-  margin: auto;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-  height: 100%;
+background-color: rgba(255,255,255,.8);
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+margin: auto;
+width: 100%;
+padding: 10px;
+text-align: center;
+height: 100%;
 }
 
+/*made myself*/
 h1{
-  font-family: fantasy,cursive,Brush Script MT,Brush Script MT,sans-serif;
-  font-size: 50px;
+font-family: fantasy,cursive,Brush Script MT,Brush Script MT,sans-serif;
+font-size: 50px;
 }
 
+/*made myself*/
 h2{
-  font-family: fantasy,cursive,Brush Script MT,Brush Script MT,sans-serif;
-  font-size: 30px;
+font-family: fantasy,cursive,Brush Script MT,Brush Script MT,sans-serif;
+font-size: 30px;
 }
 
+/*made myself*/
 .home {
-  background-image: url(./images/home.jpg);
-    background-position: .5px;
-    width: 100%;
-    height: 935px;
-    text-align: center;
-    font-family: fantasy,cursive,Brush Script MT,Brush Script MT,sans-serif;
-    /*background: rgba(255,255,255,.5);*/
-    font-size: 90px;
-    overflow: hidden;
-    filter: alpha(opacity=50);
-    color: white;
-    background-repeat: no-repeat;
-    position: relative;
+background-image: url(./images/home.jpg);
+  background-position: .5px;
+  width: 100%;
+  height: 935px;
+  text-align: center;
+  font-family: fantasy,cursive,Brush Script MT,Brush Script MT,sans-serif;
+  /*background: rgba(255,255,255,.5);*/
+  font-size: 90px;
+  overflow: hidden;
+  filter: alpha(opacity=50);
+  color: white;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
+/*made myself*/
 p{
-  text-align: center;
-  width: 700px;
-  margin:auto;
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-  font-size: 20px;
+text-align: center;
+width: 700px;
+margin:auto;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+font-size: 20px;
 }
+
+/*w3 schools*/
 
 * {
-  box-sizing: border-box;
+box-sizing: border-box;
 }
 
+/*w3 schools*/
 /* Create two equal columns that floats next to each other */
 .column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  height: 400px; /* Should be removed. Only for demonstration */
+float: left;
+width: 50%;
+padding: 10px;
+height: 400px; /* Should be removed. Only for demonstration */
 }
 
+/*w3 schools*/
 .column2 {
-  float: left;
-  width: 33%;
-  padding: 10px;
-  height: 400px; /* Should be removed. Only for demonstration */
-  text-align: center;
+float: left;
+width: 33%;
+padding: 10px;
+height: 400px; /* Should be removed. Only for demonstration */
+text-align: center;
 }
 
+/*w3 schools*/
 /* Clear floats after the columns */
 .row:after {
-  content: "";
-  display: table;
-  clear: both;
+content: "";
+display: table;
+clear: both;
 }
 
+/*w3 schools*/
 .icon{
-  width: 35px;
-  height: 35px;
+width: 35px;
+height: 35px;
 }
 
+/*made myself*/
 .contact{
-  text-align: left;
-  width: 700px;
-  margin:auto;
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MTsans-serif;
-  font-size: 20px;
+text-align: left;
+width: 700px;
+margin:auto;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MTsans-serif;
+font-size: 20px;
 }
 
+/*made myself*/
 .media{
-  width: 100px;
-  height: 100px;
+width: 100px;
+height: 100px;
 }
 
+/*made myself*/
 .card {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 90%;
 }
 
+/*made myself*/
 .height
 {
-  height: 100%;
+height: 100%;
 }
 
-
+/*made myself*/
 /*Menu CSS*/
-
 .menuhead1{
-  background: #333333;
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-  font-size: 60px;
-  text-align: left;
-  color: white;
-  width: 75%;
-  height: 90px;
- text-indent:10%;
- opacity: 90%;
+background: #333333;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+font-size: 60px;
+text-align: left;
+color: white;
+width: 75%;
+height: 90px;
+text-indent:10%;
+opacity: 90%;
 }
 
+/*made myself*/
 .menuhead2{
-  background: #333333;
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-  font-size: 60px;
-  color: white;
-  width: 75%;
-  height: 90px;
-  text-indent:-30%;
-  float:right;
-  opacity: 90%;
+background: #333333;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+font-size: 60px;
+color: white;
+width: 75%;
+height: 90px;
+text-indent:-30%;
+float:right;
+opacity: 90%;
 }
 
+/*made myself*/
 .dispic1 {
-  width: 40%;
-  height: 40%;
-  float: left;
-  margin: 58px;
+width: 40%;
+height: 40%;
+float: left;
+margin: 58px;
 }
 
+/*made myself*/
 .dispic2 {
-  width: 40%;
-  height: 40%;
-  float: right;
-  margin: 58px;
+width: 40%;
+height: 40%;
+float: right;
+margin: 58px;
 }
 
+/*made myself*/
 .menubody1 {
-  text-align: left;
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-  font-size: 40px;
-  width: 100%;
+text-align: left;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+font-size: 40px;
+width: 100%;
 }
 
+/*made myself*/
 .menubody2 {
-  text-align: right;
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-  font-size: 40px;
-  width: 100%;
+text-align: right;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+font-size: 40px;
+width: 100%;
 }
 
+/*made myself*/
 .discription{
-  font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
-  font-size: 20px;
+font-family: cursive,fantasy,Brush Script MT,Brush Script MT,sans-serif;
+font-size: 20px;
 }
-

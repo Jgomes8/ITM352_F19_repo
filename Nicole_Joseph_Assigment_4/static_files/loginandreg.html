@@ -12,25 +12,26 @@
     <script type="text/javascript">
     
     //-------------------------------------------------------------------------------
-    //Register Button link to SQLite database
+    //Register Button link to SQLite database - Incomplete
     //-------------------------------------------------------------------------------
-    $('#registerButton').click(() => { //$ grabs element name, # grabs element ID's; grab ID of button
-      console.log('Button has been clicked!');
-      $.ajax({
-        url: 'reg',
-        type: 'POST',
-        data: { //making an array object to hold data that is being posted (also grabbed from $elements)
-          fullname: $('#field_fullname').val(),
-          username: $('#field_username').val(),
-          email: $('#field_email').val(),
-          password: $('#field_pwd1').val(),
-        },
-        success: (data) => { //success function is this code works; do callback function
-          //console.log('User Registered!');
-          $('#status').html(data.message); //Output this data to status div as a message
-        }
-      });
-    });
+    //
+    // $('#registerButton').click(() => { //$ grabs element name, # grabs element ID's; grab ID of button
+    //   console.log('Button has been clicked!');
+    //   $.ajax({
+    //     url: 'reg',
+    //     type: 'POST',
+    //     data: { //making an array object to hold data that is being posted (also grabbed from $elements)
+    //       fullname: $('#field_fullname').val(),
+    //       username: $('#field_username').val(),
+    //       email: $('#field_email').val(),
+    //       password: $('#field_pwd1').val(),
+    //     },
+    //     success: (data) => { //success function is this code works; do callback function
+    //       //console.log('User Registered!');
+    //       $('#status').html(data.message); //Output this data to status div as a message
+    //     }
+    //   });
+    // });
     //-------------------------------------------------------------------------------
     </script>
 
@@ -51,7 +52,7 @@
     Login or Register
 </header>
 </div>
-
+<!--used code from w3 and my assignment 2-->
 <body>
     <main>
     <br>
@@ -131,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     alert("Both username and password are VALID! Please sign in!");
   };
-
+  //w3 schools 
   var myForm = document.getElementById("myForm");
   myForm.addEventListener("submit", checkForm, true);
 
@@ -142,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var i = document.createElement("input");
     return "setCustomValidity" in i;
   }
-
+  //w3 schools 
   if(supports_input_validity()) {
     var usernameInput = document.getElementById("field_username");
     usernameInput.setCustomValidity(usernameInput.title);
@@ -214,9 +215,11 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
 
         <script>
+        //w3 schools 
             // Get the modal
             var modal = document.getElementById('id01');
-
+            
+            //w3 schools 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {
                 if (event.target == modal) {

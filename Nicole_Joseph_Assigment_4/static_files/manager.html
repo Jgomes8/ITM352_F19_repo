@@ -1,54 +1,70 @@
+<!--
+    Manager backend page for customer loyalty check and customer ID information fetching 
+    Upon typing in an existing username of a registered customer, using the information posted to the URL through variables
+    it recieves information stored within the sqlite databse file customer_data.db and pushes it to the webpage to be shown
+    to the manager when deciding to add a new point to a loyalty card.
+
+    Point adding not implemented; loyalty status currently displayed as static card image.
+
+    Fetch system developed using sqlite database system and accessed using jquery and ajax methods.
+
+   Resources used:
+   Registered user fetch system framework & jquery module file: https://www.youtube.com/watch?v=TMg--xh2CaM&list=PLzV58Zm8FuBIWu1zvGRUfn0Xh6HXRg9cG
+   Ajax Reference Information: https://www.w3schools.com/xml/ajax_intro.asp
+   JQuery Reference Information: https://www.w3schools.com/jquery/
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="Css.css" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Customer Loyalty Status</title>
 
-    <script src="jquery-3.3.1.min.js"></script>
+    <script src="jquery-3.3.1.min.js"></script> <!--Use jquery file-->
 
     <script type="text/javascript">
 
     // jQuery convention for running when the document has been fully loaded:
     $(document).ready(() => {
         $('#readButton').click(() => {
-            var requestURL = 'users/' + $('#nameBox').val();
+            var requestURL = 'users/' + $('#nameBox').val(); //set variable requestURL formed from the URL /users and the content from namebox text field (user/:userid)
             console.log('making ajax request to:', requestURL);
 
         // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-        $.ajax({
-            url: requestURL,
-            type: 'GET',
+        $.ajax({ //Run ajax convention
+            url: requestURL, //Apply to URL from variable requestURL 
+            type: 'GET', //Using a get method
             dataType : 'json', // this URL returns data in JSON format
             success: (data) => {
                 console.log('You received some data!', data);
 
+                //If username and points exist and are true
                 if (data.username && data.points) {
-                    $('#status').html('Successfully fetched data at URL: ' + requestURL);
-                    $('#usernameDiv').html('Customer Username: ' + data.username);
-                    $('#pointsImage').attr('src', data.points).attr('width', '300px');
+                    $('#usernameDiv').html('Customer Username: ' + data.username); //grab usernameDiv id content and push customer username to html page
+                    $('#pointsImage').attr('src', data.points).attr('width', '500px'); //grab pointsImage id content source and push to html page at set width 500pixels
                 } else {
-                    $('#status').html('Error: could not find user at URL: ' + requestURL);
                     // clear the display
-                    $('#usernameDiv').html('');
-                    $('#pointsImage').attr('src', '').attr('width', '0px');
+                    $('#usernameDiv').html(''); //grab content from usernameDiv id and output nothing
+                    $('#pointsImage').attr('src', '').attr('width', '0px'); //grab content from pointsImage source attribute and output blank/nonexistent image
                 }
             },
         });
     });
 
-    $('#allUsersButton').click(() => {
-        $.ajax({
-            url: 'users',
-            type: 'GET',
-            dataType : 'json',
-            success: (data) => {
-                console.log('You received some data!', data);
-                $('#status').html('All users: ' + data);
-            },
-        });
-    });
+    // $('#allUsersButton').click(() => {
+    //     $.ajax({
+    //         url: 'users',
+    //         type: 'GET',
+    //         dataType : 'json',
+    //         success: (data) => {
+    //             console.log('You received some data!', data);
+    //             $('#status').html('All users: ' + data);
+    //         },
+    //     });
+    // });
 
     // define a generic Ajax error handler:
     // http://api.jquery.com/ajaxerror/
